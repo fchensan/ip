@@ -5,6 +5,9 @@ public class Duke {
     private final static int EXIT = 0;
     private final static int OK = 1;
 
+    private static String[] tasks = new String[100];
+    private static int numTasks = 0;
+
     private static void printWelcomeMessage(){
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
@@ -15,18 +18,35 @@ public class Duke {
     }
 
     private static void printByeMessage() {
-        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println("Good bye!");
+    }
+
+    private static void addTask(String task){
+        tasks[numTasks] = task;
+        numTasks++;
+    }
+
+    private static void printTasksList(){
+        for(int i = 0; i<numTasks; i++){
+            System.out.println(i+1 + ". " + tasks[i]);
+        }
     }
 
     private static int handleInput(String input){
-        if(input.equals("bye")){
+        switch (input){
+        case "list":
+            printTasksList();
+            break;
+        case "bye":
             printByeMessage();
             return EXIT;
+        default:
+            addTask(input);
+            System.out.println("Added: " + input);
+            break;
         }
 
-        System.out.println(input);
         printDividerLine();
-
         return OK;
     }
 
