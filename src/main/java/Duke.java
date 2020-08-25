@@ -36,14 +36,17 @@ public class Duke {
         }
     }
 
+    private static void handleMarkTaskDone(String input){
+        int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
+        tasks[taskIndex].markAsDone();
+
+        System.out.println("Ok! \"" + tasks[taskIndex].getDescription() + "\" is marked as done!");
+        printDividerLine();
+    }
+
     private static int handleInput(String input){
         if(input.startsWith("done")){
-            int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
-            tasks[taskIndex].markAsDone();
-
-            System.out.println("Ok! \"" + tasks[taskIndex].getDescription() + "\" is marked as done!");
-            printDividerLine();
-
+            handleMarkTaskDone(input);
             return OK;
         }else if(input.equals("list")){
             printTasksList();
