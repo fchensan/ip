@@ -2,10 +2,12 @@ import java.util.Scanner;
 
 public class Duke {
 
+    private final static String DONE = "DONE";
+
     private final static int EXIT = 0;
     private final static int OK = 1;
 
-    private static String[] tasks = new String[100];
+    private static String[][] tasks = new String[100][];
     private static int numTasks = 0;
 
     private static void printWelcomeMessage(){
@@ -22,28 +24,41 @@ public class Duke {
     }
 
     private static void addTask(String task){
-        tasks[numTasks] = task;
+        tasks[numTasks] = new String[]{task, null};
         numTasks++;
     }
 
     private static void printTasksList(){
         for(int i = 0; i<numTasks; i++){
-            System.out.println(i+1 + ". " + tasks[i]);
+            System.out.print(i+1 + ".");
+            if (tasks[i][1] == DONE){
+                System.out.print("[DONE] ");
+            }else{
+                System.out.print("[    ] ");
+            }
+            System.out.println(tasks[i][0]);
         }
     }
 
+    private static void markAsDone(int taskIndex){
+        tasks[taskIndex][1] = DONE;
+    }
+
     private static int handleInput(String input){
-        switch (input){
-        case "list":
+        if(input.startsWith("done")){
+            int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
+            markAsDone(taskIndex);
+
+            System.out.println("Ok! \"" + tasks[taskIndex][0] + "\" is marked as done!");
+            return OK;
+        }else if(input.equals("list")){
             printTasksList();
-            break;
-        case "bye":
+        }else if(input.equals("bye")){
             printByeMessage();
             return EXIT;
-        default:
+        }else {
             addTask(input);
             System.out.println("Added: " + input);
-            break;
         }
 
         printDividerLine();
