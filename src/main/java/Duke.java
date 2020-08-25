@@ -7,7 +7,7 @@ public class Duke {
     private final static int EXIT = 0;
     private final static int OK = 1;
 
-    private static String[][] tasks = new String[100][];
+    private static Task[] tasks = new Task[100];
     private static int numTasks = 0;
 
     private static void printWelcomeMessage(){
@@ -23,33 +23,27 @@ public class Duke {
         System.out.println("Good bye!");
     }
 
-    private static void addTask(String task){
-        tasks[numTasks] = new String[]{task, null};
+    private static void addTask(String description){
+        tasks[numTasks] = new Task(description);
         numTasks++;
     }
 
     private static void printTasksList(){
         for(int i = 0; i<numTasks; i++){
-            System.out.print(i+1 + ".");
-            if (tasks[i][1] == DONE){
-                System.out.print("[DONE] ");
-            }else{
-                System.out.print("[    ] ");
-            }
-            System.out.println(tasks[i][0]);
+            System.out.print(i+1 + ". ");
+            System.out.print(tasks[i].getStatusIcon() + " ");
+            System.out.println(tasks[i].getDescription());
         }
-    }
-
-    private static void markAsDone(int taskIndex){
-        tasks[taskIndex][1] = DONE;
     }
 
     private static int handleInput(String input){
         if(input.startsWith("done")){
             int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
-            markAsDone(taskIndex);
+            tasks[taskIndex].markAsDone();
 
-            System.out.println("Ok! \"" + tasks[taskIndex][0] + "\" is marked as done!");
+            System.out.println("Ok! \"" + tasks[taskIndex].getDescription() + "\" is marked as done!");
+            printDividerLine();
+
             return OK;
         }else if(input.equals("list")){
             printTasksList();
