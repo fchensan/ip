@@ -25,15 +25,21 @@ public class Duke {
         numTasks++;
     }
 
-    private static void handleAddTaskInput(String input) {
-        Task task = null;
-        String inputFirstWord = input.split(" ")[0];
-
+    private static String removeCommandWord(String input) {
         String inputWithoutCommand = input;
+
         int firstSpaceIndex = input.indexOf(" ");
-        if (firstSpaceIndex != -1){
-            inputWithoutCommand = input.substring(firstSpaceIndex+1);
+        if (firstSpaceIndex != -1) {
+            inputWithoutCommand = input.substring(firstSpaceIndex + 1);
         }
+
+        return inputWithoutCommand;
+    }
+
+    private static void handleAddTaskInput(String input) {
+        Task task;
+        String inputFirstWord = input.split(" ")[0];
+        String inputWithoutCommand = removeCommandWord(input);
 
         switch (inputFirstWord) {
         case "todo":
@@ -51,11 +57,13 @@ public class Duke {
         }
 
         addTask(task);
+
+        System.out.println("Added: " + input);
     }
 
     private static void printTasksList() {
         for (int i = 0; i<numTasks; i++) {
-            System.out.print(i+1 + ". ");
+            System.out.print(i + 1 + ". ");
             System.out.println(tasks[i].toString());
         }
     }
@@ -67,21 +75,18 @@ public class Duke {
         tasks[taskIndex].markAsDone();
 
         System.out.println("Ok! \"" + tasks[taskIndex].getDescription() + "\" is marked as done!");
-        printDividerLine();
     }
 
     private static int handleInput(String input) {
-        if (input.startsWith("done")) {
-            handleMarkTaskDone(input);
-            return OK;
-        } else if (input.equals("list")) {
-            printTasksList();
-        } else if (input.equals("bye")) {
+        if (input.equals("bye")) {
             printByeMessage();
             return EXIT;
+        } else if (input.startsWith("done")) {
+            handleMarkTaskDone(input);
+        } else if (input.equals("list")) {
+            printTasksList();
         } else {
             handleAddTaskInput(input);
-            System.out.println("Added: " + input);
         }
 
         printDividerLine();

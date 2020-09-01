@@ -4,7 +4,7 @@ public class TaskParser {
     }
 
     private static String parseDescription(String input) {
-        String description = null;
+        String description;
         int argumentStartIndex = input.indexOf("/");
 
         if (argumentStartIndex == -1) {
