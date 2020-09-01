@@ -20,16 +20,43 @@ public class Duke {
         System.out.println("Good bye!");
     }
 
-    private static void addTask(String description) {
-        tasks[numTasks] = new Task(description);
+    private static void addTask(Task task) {
+        tasks[numTasks] = task;
         numTasks++;
+    }
+
+    private static void handleAddTaskInput(String input) {
+        Task task = null;
+        String inputFirstWord = input.split(" ")[0];
+
+        String inputWithoutCommand = input;
+        int firstSpaceIndex = input.indexOf(" ");
+        if (firstSpaceIndex != -1){
+            inputWithoutCommand = input.substring(firstSpaceIndex+1);
+        }
+
+        switch (inputFirstWord) {
+        case "todo":
+            task = TaskParser.parseTodo(inputWithoutCommand);
+            break;
+        case "deadline":
+            task = TaskParser.parseDeadline(inputWithoutCommand);
+            break;
+        case "event":
+            task = TaskParser.parseEvent(inputWithoutCommand);
+            break;
+        default:
+            task = TaskParser.parseTask(inputWithoutCommand);
+            break;
+        }
+
+        addTask(task);
     }
 
     private static void printTasksList() {
         for (int i = 0; i<numTasks; i++) {
             System.out.print(i+1 + ". ");
-            System.out.print(tasks[i].getStatusIcon() + " ");
-            System.out.println(tasks[i].getDescription());
+            System.out.println(tasks[i].toString());
         }
     }
 
@@ -53,7 +80,7 @@ public class Duke {
             printByeMessage();
             return EXIT;
         } else {
-            addTask(input);
+            handleAddTaskInput(input);
             System.out.println("Added: " + input);
         }
 
