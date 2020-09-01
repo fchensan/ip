@@ -5,3 +5,30 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+Hello! I'm Duke
+What can I do for you?
+____________________________________________________________
+>> Added: todo finish presentation
+____________________________________________________________
+>> Added: deadline submit lab report /by 23:59pm
+____________________________________________________________
+>> 1. [T] ✘ finish presentation
+2. [D] ✘ submit lab report (by: 23:59pm)
+____________________________________________________________
+>> Added: event party /at midnight
+____________________________________________________________
+>> 1. [T] ✘ finish presentation
+2. [D] ✘ submit lab report (by: 23:59pm)
+3. [E] ✘ party (at: midnight)
+____________________________________________________________
+>> Ok! "finish presentation" is marked as done!
+____________________________________________________________
+>> Ok! "submit lab report" is marked as done!
+____________________________________________________________
+>> 1. [T] ✓ finish presentation
+2. [D] ✓ submit lab report (by: 23:59pm)
+3. [E] ✘ party (at: midnight)
+____________________________________________________________
+>> Ok! "party" is marked as done!
+____________________________________________________________
+>> Good bye!

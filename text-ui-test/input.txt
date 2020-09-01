@@ -1,0 +1,10 @@
+todo finish presentation
+deadline submit lab report /by 23:59pm
+list
+event party /at midnight
+list
+done 1
+done 2
+list
+done 3
+bye
