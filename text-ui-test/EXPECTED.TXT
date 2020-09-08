@@ -12,23 +12,41 @@ ____________________________________________________________
 ____________________________________________________________
 >> Added: deadline submit lab report /by 23:59pm
 ____________________________________________________________
->> 1. [T] ✘ finish presentation
-2. [D] ✘ submit lab report (by: 23:59pm)
+>> 1. [T] ✘  finish presentation
+2. [D] ✘  submit lab report (by: 23:59pm)
 ____________________________________________________________
 >> Added: event party /at midnight
 ____________________________________________________________
->> 1. [T] ✘ finish presentation
-2. [D] ✘ submit lab report (by: 23:59pm)
-3. [E] ✘ party (at: midnight)
+>> 1. [T] ✘  finish presentation
+2. [D] ✘  submit lab report (by: 23:59pm)
+3. [E] ✘  party (at: midnight)
 ____________________________________________________________
->> Ok! "finish presentation" is marked as done!
+>> Ok! " finish presentation" is marked as done!
 ____________________________________________________________
->> Ok! "submit lab report" is marked as done!
+>> Ok! " submit lab report" is marked as done!
 ____________________________________________________________
->> 1. [T] ✓ finish presentation
-2. [D] ✓ submit lab report (by: 23:59pm)
-3. [E] ✘ party (at: midnight)
+>> 1. [T] ✓  finish presentation
+2. [D] ✓  submit lab report (by: 23:59pm)
+3. [E] ✘  party (at: midnight)
 ____________________________________________________________
->> Ok! "party" is marked as done!
+>> Ok! " party" is marked as done!
+____________________________________________________________
+>> 1. [T] ✓  finish presentation
+2. [D] ✓  submit lab report (by: 23:59pm)
+3. [E] ✓  party (at: midnight)
+____________________________________________________________
+>> The description of a deadline cannot be empty.
+____________________________________________________________
+>> Please provide /by
+____________________________________________________________
+>> The description of a deadline cannot be empty.
+____________________________________________________________
+>> The description of a event cannot be empty.
+____________________________________________________________
+>> Please provide /at
+____________________________________________________________
+>> The description of a event cannot be empty.
+____________________________________________________________
+>> Hmm, I'm not sure what that means...
 ____________________________________________________________
 >> Good bye!

@@ -7,4 +7,12 @@ done 1
 done 2
 list
 done 3
+list
+deadline
+deadline do ip
+deadline /by 10:00am
+event
+event party
+event /at midnight
+random-command
 bye
