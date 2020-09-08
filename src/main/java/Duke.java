@@ -29,44 +29,25 @@ public class Duke {
         System.out.println("Good bye!");
     }
 
-    private static void printDescriptionError(String itemType) {
-        System.out.println("OOPS!!! The description of a " + itemType + " cannot be empty.");
-    }
-
     private static void addTask(Task task) {
         tasks[numTasks] = task;
         numTasks++;
     }
 
-    private static void handleAddTaskInput(String input) {
+    private static void handleAddTaskInput(String input) throws DukeNoDescriptionException {
         Task task;
         String inputFirstWord = input.split(" ")[0];
         String inputWithoutCommand = input.substring(inputFirstWord.length());
 
         switch (inputFirstWord) {
         case "todo":
-            try {
-                task = TaskParser.parseTodo(inputWithoutCommand);
-            } catch (DukeException e) {
-                printDescriptionError("todo");
-                return;
-            }
-        break;
+            task = TaskParser.parseTodo(inputWithoutCommand);
+            break;
         case "deadline":
-            try {
-                task = TaskParser.parseDeadline(inputWithoutCommand);
-            } catch (DukeException e) {
-                printDescriptionError("deadline");
-                return;
-            }
+            task = TaskParser.parseDeadline(inputWithoutCommand);
             break;
         case "event":
-            try {
-                task = TaskParser.parseEvent(inputWithoutCommand);
-            } catch (DukeException e) {
-                printDescriptionError("event");
-                return;
-            }
+            task = TaskParser.parseEvent(inputWithoutCommand);
             break;
         default:
             System.out.println("Hmm, I'm not sure what that means...");
@@ -103,7 +84,11 @@ public class Duke {
         } else if (input.equals("list")) {
             printTasksList();
         } else {
-            handleAddTaskInput(input);
+            try {
+                handleAddTaskInput(input);
+            } catch (DukeNoDescriptionException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
         printDividerLine();
