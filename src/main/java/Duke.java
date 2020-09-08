@@ -34,21 +34,10 @@ public class Duke {
         numTasks++;
     }
 
-    private static String removeCommandWord(String input) {
-        String inputWithoutCommand = input;
-
-        int firstSpaceIndex = input.indexOf(" ");
-        if (firstSpaceIndex != -1) {
-            inputWithoutCommand = input.substring(firstSpaceIndex + 1);
-        }
-
-        return inputWithoutCommand;
-    }
-
-    private static void handleAddTaskInput(String input) {
+    private static void handleAddTaskInput(String input) throws DukeException {
         Task task;
         String inputFirstWord = input.split(" ")[0];
-        String inputWithoutCommand = removeCommandWord(input);
+        String inputWithoutCommand = input.substring(inputFirstWord.length());
 
         switch (inputFirstWord) {
         case "todo":
@@ -61,8 +50,8 @@ public class Duke {
             task = TaskParser.parseEvent(inputWithoutCommand);
             break;
         default:
-            task = TaskParser.parseTask(inputWithoutCommand);
-            break;
+            System.out.println("Hmm, I'm not sure what that means...");
+            return;
         }
 
         addTask(task);
@@ -95,7 +84,11 @@ public class Duke {
         } else if (input.equals("list")) {
             printTasksList();
         } else {
-            handleAddTaskInput(input);
+            try {
+                handleAddTaskInput(input);
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
         printDividerLine();
