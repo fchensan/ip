@@ -1,3 +1,5 @@
+package duke;
+
 public class DukeNoDescriptionException extends DukeException {
 
     public DukeNoDescriptionException() {
