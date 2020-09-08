@@ -29,40 +29,48 @@ public class Duke {
         System.out.println("Good bye!");
     }
 
+    private static void printDescriptionError(String itemType) {
+        System.out.println("OOPS!!! The description of a " + itemType + " cannot be empty.");
+    }
+
     private static void addTask(Task task) {
         tasks[numTasks] = task;
         numTasks++;
     }
 
-    private static String removeCommandWord(String input) {
-        String inputWithoutCommand = input;
-
-        int firstSpaceIndex = input.indexOf(" ");
-        if (firstSpaceIndex != -1) {
-            inputWithoutCommand = input.substring(firstSpaceIndex + 1);
-        }
-
-        return inputWithoutCommand;
-    }
-
     private static void handleAddTaskInput(String input) {
         Task task;
         String inputFirstWord = input.split(" ")[0];
-        String inputWithoutCommand = removeCommandWord(input);
+        String inputWithoutCommand = input.substring(inputFirstWord.length());
 
         switch (inputFirstWord) {
         case "todo":
-            task = TaskParser.parseTodo(inputWithoutCommand);
-            break;
+            try {
+                task = TaskParser.parseTodo(inputWithoutCommand);
+            } catch (DukeException e) {
+                printDescriptionError("todo");
+                return;
+            }
+        break;
         case "deadline":
-            task = TaskParser.parseDeadline(inputWithoutCommand);
+            try {
+                task = TaskParser.parseDeadline(inputWithoutCommand);
+            } catch (DukeException e) {
+                printDescriptionError("deadline");
+                return;
+            }
             break;
         case "event":
-            task = TaskParser.parseEvent(inputWithoutCommand);
+            try {
+                task = TaskParser.parseEvent(inputWithoutCommand);
+            } catch (DukeException e) {
+                printDescriptionError("event");
+                return;
+            }
             break;
         default:
-            task = TaskParser.parseTask(inputWithoutCommand);
-            break;
+            System.out.println("Hmm, I'm not sure what that means...");
+            return;
         }
 
         addTask(task);
