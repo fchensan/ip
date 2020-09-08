@@ -7,6 +7,15 @@ public class Duke {
     private static Task[] tasks = new Task[100];
     private static int numTasks = 0;
 
+    private static void printDukeLogo() {
+        String logo = " ____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";
+        System.out.println("Hello from\n" + logo);
+    }
+
     private static void printWelcomeMessage() {
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
@@ -62,7 +71,7 @@ public class Duke {
     }
 
     private static void printTasksList() {
-        for (int i = 0; i<numTasks; i++) {
+        for (int i = 0; i < numTasks; i++) {
             System.out.print(i + 1 + ". ");
             System.out.println(tasks[i].toString());
         }
@@ -94,13 +103,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-
+        printDukeLogo();
         printWelcomeMessage();
         printDividerLine();
 
