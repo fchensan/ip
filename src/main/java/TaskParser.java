@@ -11,6 +11,7 @@ public class TaskParser {
         String description;
         int argumentStartIndex = input.indexOf("/");
 
+        // If no /argument is given, the entire string is the description.
         if (argumentStartIndex == -1) {
             description = input;
         } else {
@@ -24,7 +25,13 @@ public class TaskParser {
         return description;
     }
 
-    private static String parseArgument(String input, String identifier) {
+    private static String parseArgument(String input, String identifier) throws DukeNoArgumentException {
+        int identifierIndex = input.indexOf(identifier);
+
+        if (identifierIndex == -1) {
+            throw new DukeNoArgumentException();
+        }
+
         int startIndex = input.indexOf(identifier) + identifier.length() + 1;
         return input.substring(startIndex);
     }
@@ -45,8 +52,8 @@ public class TaskParser {
         return new Todo(description);
     }
 
-    public static Deadline parseDeadline(String input) throws DukeNoDescriptionException {
-        String description;
+    public static Deadline parseDeadline(String input) throws DukeException {
+        String description, by;
 
         try {
             description = parseDescription(input);
@@ -54,13 +61,17 @@ public class TaskParser {
             throw new DukeNoDescriptionException(generateDescriptionError("deadline"));
         }
 
-        String by = parseArgument(input, "/by");
+        try {
+            by = parseArgument(input, "/by");
+        } catch (DukeNoArgumentException e) {
+            throw new DukeNoArgumentException("Please provide /by");
+        }
 
         return new Deadline(description, by);
     }
 
-    public static Event parseEvent(String input) throws DukeNoDescriptionException {
-        String description;
+    public static Event parseEvent(String input) throws DukeException {
+        String description, time;
 
         try {
             description = parseDescription(input);
@@ -68,7 +79,11 @@ public class TaskParser {
             throw new DukeNoDescriptionException(generateDescriptionError("event"));
         }
 
-        String time = parseArgument(input, "/at");
+        try {
+            time = parseArgument(input, "/at");
+        } catch (DukeNoArgumentException e) {
+            throw new DukeNoArgumentException("Please provide /at");
+        }
 
         return new Event(description, time);
     }

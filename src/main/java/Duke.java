@@ -34,7 +34,7 @@ public class Duke {
         numTasks++;
     }
 
-    private static void handleAddTaskInput(String input) throws DukeNoDescriptionException {
+    private static void handleAddTaskInput(String input) throws DukeException {
         Task task;
         String inputFirstWord = input.split(" ")[0];
         String inputWithoutCommand = input.substring(inputFirstWord.length());
@@ -86,7 +86,7 @@ public class Duke {
         } else {
             try {
                 handleAddTaskInput(input);
-            } catch (DukeNoDescriptionException e) {
+            } catch (DukeException e) {
                 System.out.println(e.getMessage());
             }
         }
