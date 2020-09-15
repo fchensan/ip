@@ -10,6 +10,7 @@ public class TaskParser {
     }
 
     private static String parseDescription(String input) throws DukeNoDescriptionException {
+        input = input.trim();
         String description;
         int argumentStartIndex = input.indexOf("/");
 
