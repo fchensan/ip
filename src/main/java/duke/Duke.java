@@ -1,13 +1,13 @@
 package duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
     private final static int EXIT = 0;
     private final static int OK = 1;
 
-    private static Task[] tasks = new Task[100];
-    private static int numTasks = 0;
+    private static ArrayList<Task> tasks = new ArrayList<>();
 
     private static void printDukeLogo() {
         String logo = " ____        _        \n"
@@ -31,11 +31,6 @@ public class Duke {
         System.out.println("Good bye!");
     }
 
-    private static void addTask(Task task) {
-        tasks[numTasks] = task;
-        numTasks++;
-    }
-
     private static void handleAddTaskInput(String input) throws DukeException {
         Task task;
         String inputFirstWord = input.split(" ")[0];
@@ -56,15 +51,15 @@ public class Duke {
             return;
         }
 
-        addTask(task);
+        tasks.add(task);
 
         System.out.println("Added: " + input);
     }
 
     private static void printTasksList() {
-        for (int i = 0; i < numTasks; i++) {
+        for (int i = 0; i < tasks.size(); i++) {
             System.out.print(i + 1 + ". ");
-            System.out.println(tasks[i].toString());
+            System.out.println(tasks.get(i).toString());
         }
     }
 
@@ -72,9 +67,9 @@ public class Duke {
         // Get the second word (the task number), convert to int, then subtract 1 to make the index zero-based.
         int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
 
-        tasks[taskIndex].markAsDone();
+        tasks.get(taskIndex).markAsDone();
 
-        System.out.println("Ok! \"" + tasks[taskIndex].getDescription() + "\" is marked as done!");
+        System.out.println("Ok! \"" + tasks.get(taskIndex).getDescription() + "\" is marked as done!");
     }
 
     private static int handleInput(String input) {
