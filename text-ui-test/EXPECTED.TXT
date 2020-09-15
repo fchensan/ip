@@ -49,4 +49,28 @@ ____________________________________________________________
 ____________________________________________________________
 >> Hmm, I'm not sure what that means...
 ____________________________________________________________
+>> Added: todo buy detergent
+____________________________________________________________
+>> Added: todo finish up orbital poster
+____________________________________________________________
+>> Added: event supper /at 10pm
+____________________________________________________________
+>> 1. [T] ✓  finish presentation
+2. [D] ✓  submit lab report (by: 23:59pm)
+3. [E] ✓  party (at: midnight)
+4. [T] ✘  buy detergent
+5. [T] ✘  finish up orbital poster
+6. [E] ✘  supper (at: 10pm)
+____________________________________________________________
+>> Hmm, I'm not sure what that means...
+____________________________________________________________
+>> Hmm, I'm not sure what that means...
+____________________________________________________________
+>> 1. [T] ✓  finish presentation
+2. [D] ✓  submit lab report (by: 23:59pm)
+3. [E] ✓  party (at: midnight)
+4. [T] ✘  buy detergent
+5. [T] ✘  finish up orbital poster
+6. [E] ✘  supper (at: 10pm)
+____________________________________________________________
 >> Good bye!
