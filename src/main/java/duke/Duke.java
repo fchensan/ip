@@ -72,12 +72,25 @@ public class Duke {
         System.out.println("Ok! \"" + tasks.get(taskIndex).getDescription() + "\" is marked as done!");
     }
 
+    private static void handleDeleteTask(String input) {
+        // Get the second word (the task number), convert to int, then subtract 1 to make the index zero-based.
+        int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
+
+        Task removedTask = tasks.remove(taskIndex);
+
+        System.out.println("Ok! I have deleted this task:");
+        System.out.println(removedTask.toString());
+        System.out.println("You now have " + tasks.size() + " task(s) left.");
+    }
+
     private static int handleInput(String input) {
         if (input.equals("bye")) {
             printByeMessage();
             return EXIT;
         } else if (input.startsWith("done")) {
             handleMarkTaskDone(input);
+        } else if (input.startsWith("delete")) {
+            handleDeleteTask(input);
         } else if (input.equals("list")) {
             printTasksList();
         } else {
