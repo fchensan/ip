@@ -15,4 +15,11 @@ event
 event party
 event /at midnight
 random-command
+todo buy detergent
+todo finish up orbital poster
+event supper /at 10pm
+list
+delete 3
+delete 2
+list
 bye
