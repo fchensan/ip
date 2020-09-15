@@ -162,7 +162,7 @@ public class Duke {
                 return;
             }
 
-            addTask(deserializeTask(currLine));
+            tasks.add(deserializeTask(currLine));
         }
     }
 
@@ -172,8 +172,8 @@ public class Duke {
         Task task;
         String textToWrite = "";
 
-        for (int i = 0; i < numTasks; i++) {
-            task = tasks[i];
+        for (int i = 0; i < tasks.size(); i++) {
+            task = tasks.get(i);
             textToWrite += serializeTask(task) + System.lineSeparator();
         }
 
