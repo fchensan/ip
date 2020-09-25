@@ -13,30 +13,10 @@ public class Duke {
     private final static int EXIT = 0;
     private final static int OK = 1;
 
+    private static TextUi ui;
+
     private static ArrayList<Task> tasks = new ArrayList<>();
     private static File storageFile;
-
-    private static void printDukeLogo() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-    }
-
-    private static void printWelcomeMessage() {
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can I do for you?");
-    }
-
-    private static void printDividerLine() {
-        System.out.println("____________________________________________________________");
-    }
-
-    private static void printByeMessage() {
-        System.out.println("Good bye!");
-    }
 
     private static void handleAddTaskInput(String input) throws DukeException {
         Task task;
@@ -54,20 +34,13 @@ public class Duke {
             task = TaskParser.parseEvent(inputWithoutCommand);
             break;
         default:
-            System.out.println("Hmm, I'm not sure what that means...");
+            ui.printMessage("Hmm, I'm not sure what that means...");
             return;
         }
 
         tasks.add(task);
 
-        System.out.println("Added: " + input);
-    }
-
-    private static void printTasksList() {
-        for (int i = 0; i < tasks.size(); i++) {
-            System.out.print(i + 1 + ". ");
-            System.out.println(tasks.get(i).toString());
-        }
+        ui.printMessage("Added: " + input);
     }
 
     private static void handleMarkTaskDone(String input) {
@@ -76,7 +49,7 @@ public class Duke {
 
         tasks.get(taskIndex).markAsDone();
 
-        System.out.println("Ok! \"" + tasks.get(taskIndex).getDescription() + "\" is marked as done!");
+        ui.printTaskMarkedAsDone(tasks.get(taskIndex));
     }
 
     private static void handleDeleteTask(String input) {
@@ -85,30 +58,29 @@ public class Duke {
 
         Task removedTask = tasks.remove(taskIndex);
 
-        System.out.println("Ok! I have deleted this task:");
-        System.out.println(removedTask.toString());
-        System.out.println("You now have " + tasks.size() + " task(s) left.");
+        ui.printTaskDeleted(removedTask);
+        ui.printNumberOfTasksLeft(tasks.size());
     }
 
     private static int handleInput(String input) {
         if (input.equals("bye")) {
-            printByeMessage();
+            ui.printByeMessage();
             return EXIT;
         } else if (input.startsWith("done")) {
             handleMarkTaskDone(input);
         } else if (input.startsWith("delete")) {
             handleDeleteTask(input);
         } else if (input.equals("list")) {
-            printTasksList();
+            ui.printTasksList(tasks);
         } else {
             try {
                 handleAddTaskInput(input);
             } catch (DukeException e) {
-                System.out.println(e.getMessage());
+                ui.printErrorMessage(e.getMessage());
             }
         }
 
-        printDividerLine();
+        ui.printDividerLine();
         return OK;
     }
 
@@ -188,7 +160,7 @@ public class Duke {
 
             readDataFromFile();
         } catch (IOException e) {
-            System.out.println("Unable to perform file setup.");
+            ui.printErrorMessage("Unable to perform file setup.");
             return false;
         }
 
@@ -199,24 +171,24 @@ public class Duke {
         try {
             saveDataToFile();
         } catch (IOException e) {
-            System.out.println("Error when saving file.");
+            ui.printErrorMessage("Unable to save file.");
         }
     }
 
     private static void performInputLoop() {
-        Scanner in = new Scanner(System.in);
         String input;
 
         do {
-            System.out.print(">> ");
-            input = in.nextLine();
+            input = ui.getUserInput();
         } while (handleInput(input) != EXIT);
     }
 
     public static void main(String[] args) {
-        printDukeLogo();
-        printWelcomeMessage();
-        printDividerLine();
+        ui = new TextUi();
+
+        ui.printDukeLogo();
+        ui.printWelcomeMessage();
+        ui.printDividerLine();
 
         if (!performFileSetup()) {
             return;
