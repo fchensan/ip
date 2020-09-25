@@ -16,7 +16,7 @@ public class Duke {
     private static TextUi ui;
     private static Storage storage;
 
-    private static ArrayList<Task> tasks = new ArrayList<>();
+    private static TaskList tasks;
 
     private static void handleAddTaskInput(String input) throws DukeException {
         Task task;
@@ -47,7 +47,7 @@ public class Duke {
         // Get the second word (the task number), convert to int, then subtract 1 to make the index zero-based.
         int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
 
-        tasks.get(taskIndex).markAsDone();
+        tasks.markAsDone(taskIndex);
 
         ui.printTaskMarkedAsDone(tasks.get(taskIndex));
     }
@@ -95,6 +95,7 @@ public class Duke {
     public static void main(String[] args) {
         ui = new TextUi();
         storage = new Storage(ui, STORAGE_FILEPATH);
+        tasks = new TaskList();
 
         ui.printDukeLogo();
         ui.printWelcomeMessage();

@@ -57,8 +57,8 @@ public class Storage {
         return line;
     }
 
-    public ArrayList<Task> readDataFromFile() throws FileNotFoundException {
-        ArrayList<Task> tasks = new ArrayList<>();
+    public TaskList readDataFromFile() throws FileNotFoundException {
+        TaskList tasks = new TaskList();
         Scanner s = new Scanner(storageFile);
         String currLine;
 
@@ -90,12 +90,12 @@ public class Storage {
         fw.close();
     }
 
-    public boolean performFileSetup(ArrayList<Task> tasksList) {
+    public boolean performFileSetup(TaskList taskList) {
         try {
             storageFile = new File(storageFilepath);
             storageFile.createNewFile();
 
-            tasksList = readDataFromFile();
+            taskList = readDataFromFile();
         } catch (IOException e) {
             ui.printErrorMessage("Unable to perform file setup.");
             return false;
