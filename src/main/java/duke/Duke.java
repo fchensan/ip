@@ -14,9 +14,9 @@ public class Duke {
     private final static int OK = 1;
 
     private static TextUi ui;
+    private static Storage storage;
 
     private static ArrayList<Task> tasks = new ArrayList<>();
-    private static File storageFile;
 
     private static void handleAddTaskInput(String input) throws DukeException {
         Task task;
@@ -84,97 +84,6 @@ public class Duke {
         return OK;
     }
 
-    private static Task deserializeTask(String inputLine) {
-        Task task = null;
-
-        String[] lineSegments = inputLine.split(";");
-        boolean isDone = lineSegments[1].equals("1");
-
-        switch (lineSegments[0]) {
-        case Todo.IDENTIFIER:
-            task = new Todo(isDone, lineSegments[2]);
-            break;
-        case Deadline.IDENTIFIER:
-            task = new Deadline(isDone, lineSegments[2], lineSegments[3]);
-            break;
-        case Event.IDENTIFIER:
-            task = new Event(isDone, lineSegments[2], lineSegments[3]);
-            break;
-        default:
-            break;
-        }
-
-        return task;
-    }
-
-    private static String serializeTask(Task task) {
-        String line = "";
-
-        line += task.getIdentifier() + ";";
-        line += (task.isDone() ? 1 : 0) + ";";
-        line += task.getDescription();
-
-        if (task instanceof Deadline) {
-            line += ";" + ((Deadline) task).getBy();
-        } else if (task instanceof Event) {
-            line += ";" + ((Event) task).getAt();
-        }
-
-        return line;
-    }
-
-    private static void readDataFromFile() throws FileNotFoundException {
-        Scanner s = new Scanner(storageFile);
-        String currLine;
-
-        while (s.hasNext()) {
-            currLine = s.nextLine();
-
-            if (currLine == "") {
-                return;
-            }
-
-            tasks.add(deserializeTask(currLine));
-        }
-    }
-
-    private static void saveDataToFile() throws IOException {
-        FileWriter fw = new FileWriter(storageFile);
-
-        Task task;
-        String textToWrite = "";
-
-        for (int i = 0; i < tasks.size(); i++) {
-            task = tasks.get(i);
-            textToWrite += serializeTask(task) + System.lineSeparator();
-        }
-
-        fw.write(textToWrite);
-        fw.close();
-    }
-
-    private static boolean performFileSetup() {
-        try {
-            storageFile = new File(STORAGE_FILEPATH);
-            storageFile.createNewFile();
-
-            readDataFromFile();
-        } catch (IOException e) {
-            ui.printErrorMessage("Unable to perform file setup.");
-            return false;
-        }
-
-        return true;
-    }
-
-    private static void performSavingOperations() {
-        try {
-            saveDataToFile();
-        } catch (IOException e) {
-            ui.printErrorMessage("Unable to save file.");
-        }
-    }
-
     private static void performInputLoop() {
         String input;
 
@@ -185,15 +94,16 @@ public class Duke {
 
     public static void main(String[] args) {
         ui = new TextUi();
+        storage = new Storage(ui, STORAGE_FILEPATH);
 
         ui.printDukeLogo();
         ui.printWelcomeMessage();
         ui.printDividerLine();
 
-        if (!performFileSetup()) {
+        if (!storage.performFileSetup(tasks)) {
             return;
         }
         performInputLoop();
-        performSavingOperations();
+        storage.performSavingOperations(tasks);
     }
 }
