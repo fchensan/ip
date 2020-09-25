@@ -1,4 +1,6 @@
-package duke;
+package duke.task;
+
+import duke.task.Task;
 
 public class Deadline extends Task {
     public static final String IDENTIFIER = "D";

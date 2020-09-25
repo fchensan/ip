@@ -1,11 +1,9 @@
 package duke;
 
-import java.util.ArrayList;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
+import duke.commands.Command;
+import duke.commands.CommandExit;
+import duke.exceptions.DukeException;
+import duke.parsers.Parser;
 
 public class Duke {
     private static final String STORAGE_FILEPATH = "duke-data.txt";

@@ -1,4 +1,4 @@
-package duke;
+package duke.exceptions;
 
 public class DukeNoDescriptionException extends DukeException {
 

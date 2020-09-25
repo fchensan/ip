@@ -1,4 +1,12 @@
-package duke;
+package duke.parsers;
+
+import duke.exceptions.DukeException;
+import duke.exceptions.DukeNoArgumentException;
+import duke.exceptions.DukeNoDescriptionException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
 public class TaskParser {
     public TaskParser() {

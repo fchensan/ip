@@ -1,4 +1,8 @@
-package duke;
+package duke.commands;
+
+import duke.task.Task;
+import duke.TaskList;
+import duke.TextUi;
 
 public class CommandDeleteTask extends Command {
     private int taskIndex;

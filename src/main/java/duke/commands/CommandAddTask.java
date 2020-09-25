@@ -1,6 +1,8 @@
-package duke;
+package duke.commands;
 
-import org.w3c.dom.Text;
+import duke.task.Task;
+import duke.TaskList;
+import duke.TextUi;
 
 public class CommandAddTask extends Command{
     private Task task;
