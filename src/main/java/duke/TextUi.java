@@ -5,6 +5,9 @@ import duke.task.Task;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Handles input and output from the command line interface.
+ */
 public class TextUi {
     public Scanner in;
 
@@ -38,6 +41,11 @@ public class TextUi {
         System.out.println(message);
     }
 
+    /**
+     * Prints a list of tasks with numbering.
+     *
+     * @param tasks the list of tasks to be printed
+     */
     public void printTasksList(ArrayList<Task> tasks) {
         for (int i = 0; i < tasks.size(); i++) {
             System.out.print(i + 1 + ". ");
@@ -62,6 +70,11 @@ public class TextUi {
         System.out.println("ERROR: " + message);
     }
 
+    /**
+     * Prompts the user for command input and returns the raw input String.
+     *
+     * @return raw input string
+     */
     public String getUserInput() {
         System.out.print(">> ");
         return in.nextLine();

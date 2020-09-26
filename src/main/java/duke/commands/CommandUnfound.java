@@ -3,6 +3,9 @@ package duke.commands;
 import duke.TaskList;
 import duke.TextUi;
 
+/**
+ * Represents an unrecognized command.
+ */
 public class CommandUnfound extends Command{
 
     @Override
