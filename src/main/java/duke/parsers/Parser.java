@@ -9,7 +9,7 @@ public class Parser {
         Task task = null;
         int taskIndex;
         String inputFirstWord = input.split(" ")[0];
-        String inputWithoutCommand = input.substring(inputFirstWord.length());
+        String inputWithoutCommand = input.substring(inputFirstWord.length()).trim();
 
         switch (inputFirstWord) {
         case "bye":
@@ -23,6 +23,8 @@ public class Parser {
             return new CommandDeleteTask(taskIndex);
         case "list":
             return new CommandPrintTaskList();
+        case "find":
+            return new CommandFind(inputWithoutCommand);
         case "todo":
             task = TaskParser.parseTodo(inputWithoutCommand);
             break;
