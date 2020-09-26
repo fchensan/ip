@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ *  Handles saving and reading data in and out of a text file.
+ */
 public class Storage {
     private TextUi ui;
     private File storageFile;
@@ -95,6 +98,12 @@ public class Storage {
         fw.close();
     }
 
+    /**
+     * Opens up the storage text file containing tasks, and adds all of the tasks into the given TaskList.
+     *
+     * @param taskList the list of tasks to add on to
+     * @return true if operation is successful, false otherwise
+     */
     public boolean performFileSetup(TaskList taskList) {
         try {
             storageFile = new File(storageFilepath);
@@ -109,6 +118,11 @@ public class Storage {
         return true;
     }
 
+    /**
+     * Saves the tasks from the given list into the storage text file.
+     *
+     * @param tasks the list containing tasks to be saved
+     */
     public void performSavingOperations(ArrayList<Task> tasks) {
         try {
             saveDataToFile(tasks);
