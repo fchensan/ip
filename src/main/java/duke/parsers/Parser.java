@@ -4,7 +4,17 @@ import duke.commands.*;
 import duke.exceptions.DukeException;
 import duke.task.Task;
 
+/**
+ * Parses the user's input.
+ */
 public class Parser {
+    /**
+     * Parses the user input and returns a Command that should be executed.
+     *
+     * @param input the raw String input that the user types in
+     * @return a Command associated with the user's input
+     * @throws DukeException
+     */
     public Command parse(String input) throws DukeException {
         Task task = null;
         int taskIndex;
