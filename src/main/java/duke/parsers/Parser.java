@@ -4,12 +4,22 @@ import duke.commands.*;
 import duke.exceptions.DukeException;
 import duke.task.Task;
 
+/**
+ * Parses the user's input.
+ */
 public class Parser {
+    /**
+     * Parses the user input and returns a Command that should be executed.
+     *
+     * @param input the raw String input that the user types in
+     * @return a Command associated with the user's input
+     * @throws DukeException
+     */
     public Command parse(String input) throws DukeException {
         Task task = null;
         int taskIndex;
         String inputFirstWord = input.split(" ")[0];
-        String inputWithoutCommand = input.substring(inputFirstWord.length());
+        String inputWithoutCommand = input.substring(inputFirstWord.length()).trim();
 
         switch (inputFirstWord) {
         case "bye":
@@ -23,6 +33,8 @@ public class Parser {
             return new CommandDeleteTask(taskIndex);
         case "list":
             return new CommandPrintTaskList();
+        case "find":
+            return new CommandFind(inputWithoutCommand);
         case "todo":
             task = TaskParser.parseTodo(inputWithoutCommand);
             break;

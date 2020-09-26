@@ -22,6 +22,7 @@ public class Duke {
         Command command;
 
         do {
+            ui.printDividerLine();
             input = ui.getUserInput();
 
             try {
@@ -43,7 +44,6 @@ public class Duke {
 
         ui.printDukeLogo();
         ui.printWelcomeMessage();
-        ui.printDividerLine();
 
         if (!storage.performFileSetup(tasks)) {
             return;

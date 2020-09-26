@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ *  Handles saving and reading data in and out of a text file.
+ */
 public class Storage {
     private TextUi ui;
     private File storageFile;
@@ -23,7 +26,7 @@ public class Storage {
         this.storageFilepath = storageFilepath;
     }
 
-    public Task deserializeTask(String inputLine) {
+    private Task deserializeTask(String inputLine) {
         Task task = null;
 
         String[] lineSegments = inputLine.split(";");
@@ -46,7 +49,7 @@ public class Storage {
         return task;
     }
 
-    public String serializeTask(Task task) {
+    private String serializeTask(Task task) {
         String line = "";
 
         line += task.getIdentifier() + ";";
@@ -62,7 +65,7 @@ public class Storage {
         return line;
     }
 
-    public TaskList readDataFromFile() throws FileNotFoundException {
+    private TaskList readDataFromFile() throws FileNotFoundException {
         TaskList tasks = new TaskList();
         Scanner s = new Scanner(storageFile);
         String currLine;
@@ -80,7 +83,7 @@ public class Storage {
         return tasks;
     }
 
-    public void saveDataToFile(ArrayList<Task> tasks) throws IOException {
+    private void saveDataToFile(ArrayList<Task> tasks) throws IOException {
         FileWriter fw = new FileWriter(storageFile);
 
         Task task;
@@ -95,12 +98,18 @@ public class Storage {
         fw.close();
     }
 
+    /**
+     * Opens up the storage text file containing tasks, and adds all of the tasks into the given TaskList.
+     *
+     * @param taskList the list of tasks to add on to
+     * @return true if operation is successful, false otherwise
+     */
     public boolean performFileSetup(TaskList taskList) {
         try {
             storageFile = new File(storageFilepath);
             storageFile.createNewFile();
 
-            taskList = readDataFromFile();
+            taskList.addAll(readDataFromFile());
         } catch (IOException e) {
             ui.printErrorMessage("Unable to perform file setup.");
             return false;
@@ -109,6 +118,11 @@ public class Storage {
         return true;
     }
 
+    /**
+     * Saves the tasks from the given list into the storage text file.
+     *
+     * @param tasks the list containing tasks to be saved
+     */
     public void performSavingOperations(ArrayList<Task> tasks) {
         try {
             saveDataToFile(tasks);
