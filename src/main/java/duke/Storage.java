@@ -23,7 +23,7 @@ public class Storage {
         this.storageFilepath = storageFilepath;
     }
 
-    public Task deserializeTask(String inputLine) {
+    private Task deserializeTask(String inputLine) {
         Task task = null;
 
         String[] lineSegments = inputLine.split(";");
@@ -46,7 +46,7 @@ public class Storage {
         return task;
     }
 
-    public String serializeTask(Task task) {
+    private String serializeTask(Task task) {
         String line = "";
 
         line += task.getIdentifier() + ";";
@@ -62,7 +62,7 @@ public class Storage {
         return line;
     }
 
-    public TaskList readDataFromFile() throws FileNotFoundException {
+    private TaskList readDataFromFile() throws FileNotFoundException {
         TaskList tasks = new TaskList();
         Scanner s = new Scanner(storageFile);
         String currLine;
@@ -80,7 +80,7 @@ public class Storage {
         return tasks;
     }
 
-    public void saveDataToFile(ArrayList<Task> tasks) throws IOException {
+    private void saveDataToFile(ArrayList<Task> tasks) throws IOException {
         FileWriter fw = new FileWriter(storageFile);
 
         Task task;
@@ -100,7 +100,7 @@ public class Storage {
             storageFile = new File(storageFilepath);
             storageFile.createNewFile();
 
-            taskList = readDataFromFile();
+            taskList.addAll(readDataFromFile());
         } catch (IOException e) {
             ui.printErrorMessage("Unable to perform file setup.");
             return false;
