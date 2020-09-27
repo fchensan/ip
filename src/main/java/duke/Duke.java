@@ -4,6 +4,7 @@ import duke.commands.Command;
 import duke.commands.CommandExit;
 import duke.exceptions.DukeException;
 import duke.parsers.Parser;
+import duke.task.TaskList;
 
 public class Duke {
     private static final String STORAGE_FILEPATH = "duke-data.txt";
