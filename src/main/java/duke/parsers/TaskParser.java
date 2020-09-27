@@ -54,7 +54,7 @@ public class TaskParser {
         int identifierIndex = input.indexOf(identifier);
 
         if (identifierIndex == -1) {
-            throw new DukeNoArgumentException();
+            throw new DukeNoArgumentException(identifier);
         }
 
         int startIndex = input.indexOf(identifier) + identifier.length() + 1;
@@ -105,11 +105,7 @@ public class TaskParser {
             throw new DukeNoDescriptionException("deadline");
         }
 
-        try {
-            by = parseArgument(input, "/by");
-        } catch (DukeNoArgumentException e) {
-            throw new DukeNoArgumentException("Please provide /by");
-        }
+        by = parseArgument(input, "/by");
 
         return new Deadline(description, by);
     }
@@ -130,11 +126,7 @@ public class TaskParser {
             throw new DukeNoDescriptionException("event");
         }
 
-        try {
-            time = parseArgument(input, "/at");
-        } catch (DukeNoArgumentException e) {
-            throw new DukeNoArgumentException("Please provide /at");
-        }
+        time = parseArgument(input, "/at");
 
         return new Event(description, time);
     }
