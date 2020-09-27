@@ -16,10 +16,6 @@ public class TaskParser {
 
     }
 
-    private static String generateDescriptionError(String itemType) {
-        return "The description of a " + itemType + " cannot be empty.";
-    }
-
     /**
      * Given a Task input in the form of "<description> /identifier <argument>", returns the description.
      *
@@ -87,7 +83,7 @@ public class TaskParser {
         try {
             description = parseDescription(input);
         } catch (DukeNoDescriptionException e) {
-            throw new DukeNoDescriptionException(generateDescriptionError("todo"));
+            throw new DukeNoDescriptionException("todo");
         }
 
         return new Todo(description);
@@ -106,7 +102,7 @@ public class TaskParser {
         try {
             description = parseDescription(input);
         } catch (DukeNoDescriptionException e) {
-            throw new DukeNoDescriptionException(generateDescriptionError("deadline"));
+            throw new DukeNoDescriptionException("deadline");
         }
 
         try {
@@ -131,7 +127,7 @@ public class TaskParser {
         try {
             description = parseDescription(input);
         } catch (DukeNoDescriptionException e) {
-            throw new DukeNoDescriptionException(generateDescriptionError("event"));
+            throw new DukeNoDescriptionException("event");
         }
 
         try {
