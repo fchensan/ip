@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Event extends Task {
     public static final String IDENTIFIER = "E";
 
-    protected LocalDate at;
+    private LocalDate at;
 
     public Event(String description, String at) {
         super(description);

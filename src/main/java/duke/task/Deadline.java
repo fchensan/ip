@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Deadline extends Task {
     public static final String IDENTIFIER = "D";
 
-    protected LocalDate by;
+    private LocalDate by;
 
     public Deadline(String description, String by) {
         super(description);
