@@ -8,9 +8,6 @@ import duke.parsers.Parser;
 public class Duke {
     private static final String STORAGE_FILEPATH = "duke-data.txt";
 
-    private final static int EXIT = 0;
-    private final static int OK = 1;
-
     private static TextUi ui;
     private static Storage storage;
     private static Parser parser;
