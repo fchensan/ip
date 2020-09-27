@@ -1,14 +1,22 @@
 package duke.commands;
 
+import duke.exceptions.DukeException;
 import duke.task.TaskList;
 import duke.TextUi;
 import duke.task.Task;
 
 public class CommandFind extends Command {
+    public static final String DEFAULT_KEYWORD = "find";
+
     private String searchPhrase;
 
-    public CommandFind(String searchPhrase) {
-        this.searchPhrase = searchPhrase;
+    public CommandFind() {
+        this.keyword = DEFAULT_KEYWORD;
+    }
+
+    @Override
+    public void setup(String input) throws DukeException {
+        this.searchPhrase = input;
     }
 
     @Override
