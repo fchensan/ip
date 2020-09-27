@@ -47,6 +47,6 @@ public class Duke {
             return;
         }
         performInputLoop();
-        storage.performSavingOperations(tasks);
+        storage.save(tasks);
     }
 }

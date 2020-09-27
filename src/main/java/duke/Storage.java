@@ -120,7 +120,7 @@ public class Storage {
      *
      * @param tasks the list containing tasks to be saved
      */
-    public void performSavingOperations(ArrayList<Task> tasks) {
+    public void save(ArrayList<Task> tasks) {
         try {
             saveDataToFile(tasks);
         } catch (IOException e) {
