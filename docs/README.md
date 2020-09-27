@@ -27,7 +27,7 @@ This folder will contain .
 
 ### `todo` - Add a new Todo item
 
-Format: `todo DESCRIPTION'
+Format: `todo DESCRIPTION`
 
 Example of usage: 
 
@@ -41,7 +41,7 @@ Expected outcome:
 
 Adds a new Deadline with a date.
 
-Format: `deadline DESCRIPTION /by yyyy-mm-dd'
+Format: `deadline DESCRIPTION /by yyyy-mm-dd`
 
 Example of usage: 
 
@@ -55,7 +55,7 @@ Expected outcome:
 
 Adds a new Event with a date.
 
-Format: `event DESCRIPTION /at yyyy-mm-dd'
+Format: `event DESCRIPTION /at yyyy-mm-dd`
 
 Example of usage: 
 
