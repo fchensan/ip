@@ -2,7 +2,9 @@ package duke.parsers;
 
 import duke.commands.*;
 import duke.exceptions.DukeException;
-import duke.task.Task;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Todo;
 
 /**
  * Parses the user's input.
@@ -16,7 +18,6 @@ public class Parser {
      * @throws DukeException
      */
     public Command parse(String input) throws DukeException {
-        Task task = null;
         int taskIndex;
         String inputFirstWord = input.split(" ")[0];
         String inputWithoutCommand = input.substring(inputFirstWord.length()).trim();
@@ -36,18 +37,16 @@ public class Parser {
         case "find":
             return new CommandFind(inputWithoutCommand);
         case "todo":
-            task = TaskParser.parseTodo(inputWithoutCommand);
-            break;
+            Todo todo = TaskParser.parseTodo(inputWithoutCommand);
+            return new CommandAddTodo(todo);
         case "deadline":
-            task = TaskParser.parseDeadline(inputWithoutCommand);
-            break;
+            Deadline deadline = TaskParser.parseDeadline(inputWithoutCommand);
+            return new CommandAddDeadline(deadline);
         case "event":
-            task = TaskParser.parseEvent(inputWithoutCommand);
-            break;
+            Event event = TaskParser.parseEvent(inputWithoutCommand);
+            return new CommandAddEvent(event);
         default:
             return new CommandUnfound();
         }
-
-        return new CommandAddTask(task);
     }
 }

@@ -14,6 +14,10 @@ public class CommandAddTask extends Command{
         this.task = task;
     }
 
+    public CommandAddTask() {
+
+    }
+
     @Override
     public void execute(TaskList tasks, TextUi ui) {
         tasks.add(task);
