@@ -17,7 +17,7 @@ public class Duke {
 
     private static void performInputLoop() {
         String input;
-        Command command;
+        Command command = null;
 
         do {
             ui.printDividerLine();
@@ -25,12 +25,11 @@ public class Duke {
 
             try {
                 command = parser.parse(input);
+                command.execute(tasks, ui);
             } catch (DukeException e) {
                 ui.printErrorMessage(e.getMessage());
-                command = new CommandExit();
             }
 
-            command.execute(tasks, ui);
         } while (!(command instanceof CommandExit));
     }
 
