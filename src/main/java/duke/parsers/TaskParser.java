@@ -16,10 +16,6 @@ public class TaskParser {
 
     }
 
-    private static String generateDescriptionError(String itemType) {
-        return "The description of a " + itemType + " cannot be empty.";
-    }
-
     /**
      * Given a Task input in the form of "<description> /identifier <argument>", returns the description.
      *
@@ -28,19 +24,15 @@ public class TaskParser {
      * @throws DukeNoDescriptionException
      */
     private static String parseDescription(String input) throws DukeNoDescriptionException {
-        input = input.trim();
         String description;
         int argumentStartIndex = input.indexOf("/");
 
-        // If no /argument is given, the entire string is the description.
-        if (argumentStartIndex == -1) {
-            description = input;
-        } else {
-            description = input.substring(0, argumentStartIndex - 1);
-        }
-
-        if (description.trim().length() == 0) {
+        if (argumentStartIndex == 0 || input.length() == 0) {
             throw new DukeNoDescriptionException();
+        } else if (argumentStartIndex != -1) {
+            description = input.substring(0, argumentStartIndex - 1);
+        } else {
+            description = input;
         }
 
         return description;
@@ -58,7 +50,7 @@ public class TaskParser {
         int identifierIndex = input.indexOf(identifier);
 
         if (identifierIndex == -1) {
-            throw new DukeNoArgumentException();
+            throw new DukeNoArgumentException(identifier);
         }
 
         int startIndex = input.indexOf(identifier) + identifier.length() + 1;
@@ -87,7 +79,7 @@ public class TaskParser {
         try {
             description = parseDescription(input);
         } catch (DukeNoDescriptionException e) {
-            throw new DukeNoDescriptionException(generateDescriptionError("todo"));
+            throw new DukeNoDescriptionException("todo");
         }
 
         return new Todo(description);
@@ -106,14 +98,10 @@ public class TaskParser {
         try {
             description = parseDescription(input);
         } catch (DukeNoDescriptionException e) {
-            throw new DukeNoDescriptionException(generateDescriptionError("deadline"));
+            throw new DukeNoDescriptionException("deadline");
         }
 
-        try {
-            by = parseArgument(input, "/by");
-        } catch (DukeNoArgumentException e) {
-            throw new DukeNoArgumentException("Please provide /by");
-        }
+        by = parseArgument(input, "/by");
 
         return new Deadline(description, by);
     }
@@ -131,14 +119,10 @@ public class TaskParser {
         try {
             description = parseDescription(input);
         } catch (DukeNoDescriptionException e) {
-            throw new DukeNoDescriptionException(generateDescriptionError("event"));
+            throw new DukeNoDescriptionException("event");
         }
 
-        try {
-            time = parseArgument(input, "/at");
-        } catch (DukeNoArgumentException e) {
-            throw new DukeNoArgumentException("Please provide /at");
-        }
+        time = parseArgument(input, "/at");
 
         return new Event(description, time);
     }

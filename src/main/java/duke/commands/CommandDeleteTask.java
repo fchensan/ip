@@ -1,6 +1,7 @@
 package duke.commands;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.DukeNoArgumentException;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.TextUi;
@@ -19,8 +20,12 @@ public class CommandDeleteTask extends Command {
 
     @Override
     public void setup(String input) throws DukeException {
-        // Get the second word (the task number), convert to int, then subtract 1 to make the index zero-based.
-        taskIndex = Integer.parseInt(input) - 1;
+        try {
+            // Get the second word (the task number), convert to int, then subtract 1 to make the index zero-based.
+            taskIndex = Integer.parseInt(input) - 1;
+        } catch (NumberFormatException e) {
+            throw new DukeNoArgumentException("task number");
+        }
     }
 
     @Override

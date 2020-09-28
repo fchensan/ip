@@ -5,7 +5,7 @@ public class DukeNoArgumentException extends DukeException {
     public DukeNoArgumentException() {
 
     }
-    public DukeNoArgumentException(String message) {
-        super(message);
+    public DukeNoArgumentException(String identifier) {
+        super("Please provide " + identifier);
     }
 }
