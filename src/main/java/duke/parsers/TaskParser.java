@@ -24,19 +24,15 @@ public class TaskParser {
      * @throws DukeNoDescriptionException
      */
     private static String parseDescription(String input) throws DukeNoDescriptionException {
-        input = input.trim();
         String description;
         int argumentStartIndex = input.indexOf("/");
 
-        // If no /argument is given, the entire string is the description.
-        if (argumentStartIndex == -1) {
-            description = input;
-        } else {
-            description = input.substring(0, argumentStartIndex - 1);
-        }
-
-        if (description.trim().length() == 0) {
+        if (argumentStartIndex == 0 || input.length() == 0) {
             throw new DukeNoDescriptionException();
+        } else if (argumentStartIndex != -1) {
+            description = input.substring(0, argumentStartIndex - 1);
+        } else {
+            description = input;
         }
 
         return description;
