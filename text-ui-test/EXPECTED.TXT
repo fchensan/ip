@@ -8,69 +8,75 @@ Hello from
 Hello! I'm Duke
 What can I do for you?
 ____________________________________________________________
->> Added: todo finish presentation
+>> Added: [T] ✘ finish presentation
 ____________________________________________________________
->> Added: deadline submit lab report /by 23:59pm
+>> Added: [D] ✘ submit lab report (by: 2020-10-10)
 ____________________________________________________________
->> 1. [T] ✘  finish presentation
-2. [D] ✘  submit lab report (by: 23:59pm)
+>> 1. [T] ✘ finish presentation
+2. [D] ✘ submit lab report (by: 2020-10-10)
 ____________________________________________________________
->> Added: event party /at midnight
+>> Added: [E] ✘ party (at: 2020-09-08)
 ____________________________________________________________
->> 1. [T] ✘  finish presentation
-2. [D] ✘  submit lab report (by: 23:59pm)
-3. [E] ✘  party (at: midnight)
+>> 1. [T] ✘ finish presentation
+2. [D] ✘ submit lab report (by: 2020-10-10)
+3. [E] ✘ party (at: 2020-09-08)
 ____________________________________________________________
->> Ok! " finish presentation" is marked as done!
+>> Ok! "finish presentation" is marked as done!
 ____________________________________________________________
->> Ok! " submit lab report" is marked as done!
+>> Ok! "submit lab report" is marked as done!
 ____________________________________________________________
->> 1. [T] ✓  finish presentation
-2. [D] ✓  submit lab report (by: 23:59pm)
-3. [E] ✘  party (at: midnight)
+>> 1. [T] ✓ finish presentation
+2. [D] ✓ submit lab report (by: 2020-10-10)
+3. [E] ✘ party (at: 2020-09-08)
 ____________________________________________________________
->> Ok! " party" is marked as done!
+>> Ok! "party" is marked as done!
 ____________________________________________________________
->> 1. [T] ✓  finish presentation
-2. [D] ✓  submit lab report (by: 23:59pm)
-3. [E] ✓  party (at: midnight)
+>> 1. [T] ✓ finish presentation
+2. [D] ✓ submit lab report (by: 2020-10-10)
+3. [E] ✓ party (at: 2020-09-08)
 ____________________________________________________________
->> The description of a deadline cannot be empty.
+>> ERROR: The description of a deadline cannot be empty.
 ____________________________________________________________
->> Please provide /by
+>> ERROR: Please provide /by
 ____________________________________________________________
->> The description of a deadline cannot be empty.
+>> ERROR: The description of a deadline cannot be empty.
 ____________________________________________________________
->> The description of a event cannot be empty.
+>> ERROR: The description of a event cannot be empty.
 ____________________________________________________________
->> Please provide /at
+>> ERROR: Please provide /at
 ____________________________________________________________
->> The description of a event cannot be empty.
-____________________________________________________________
->> Hmm, I'm not sure what that means...
-____________________________________________________________
->> Added: todo buy detergent
-____________________________________________________________
->> Added: todo finish up orbital poster
-____________________________________________________________
->> Added: event supper /at 10pm
-____________________________________________________________
->> 1. [T] ✓  finish presentation
-2. [D] ✓  submit lab report (by: 23:59pm)
-3. [E] ✓  party (at: midnight)
-4. [T] ✘  buy detergent
-5. [T] ✘  finish up orbital poster
-6. [E] ✘  supper (at: 10pm)
+>> ERROR: The description of a event cannot be empty.
 ____________________________________________________________
 >> Hmm, I'm not sure what that means...
 ____________________________________________________________
->> Hmm, I'm not sure what that means...
+>> Added: [T] ✘ buy detergent
 ____________________________________________________________
->> 1. [T] ✓  finish presentation
-2. [D] ✓  submit lab report (by: 23:59pm)
-3. [E] ✓  party (at: midnight)
-4. [T] ✘  buy detergent
-5. [T] ✘  finish up orbital poster
-6. [E] ✘  supper (at: 10pm)
+>> Added: [T] ✘ finish up orbital poster
+____________________________________________________________
+>> Added: [E] ✘ supper (at: 2020-10-02)
+____________________________________________________________
+>> 1. [T] ✓ finish presentation
+2. [D] ✓ submit lab report (by: 2020-10-10)
+3. [E] ✓ party (at: 2020-09-08)
+4. [T] ✘ buy detergent
+5. [T] ✘ finish up orbital poster
+6. [E] ✘ supper (at: 2020-10-02)
+____________________________________________________________
+>> Ok! I have deleted this task:
+[E] ✓ party (at: 2020-09-08)
+You now have 5 task(s) left.
+____________________________________________________________
+>> Ok! I have deleted this task:
+[D] ✓ submit lab report (by: 2020-10-10)
+You now have 4 task(s) left.
+____________________________________________________________
+>> 1. [T] ✓ finish presentation
+2. [T] ✘ buy detergent
+3. [T] ✘ finish up orbital poster
+4. [E] ✘ supper (at: 2020-10-02)
+____________________________________________________________
+>> ERROR: Index for task number should be within the range from 1 to 4
+____________________________________________________________
+>> ERROR: Index for task number should be within the range from 1 to 4
 ____________________________________________________________
 >> Good bye!

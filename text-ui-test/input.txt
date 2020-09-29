@@ -1,7 +1,7 @@
 todo finish presentation
-deadline submit lab report /by 23:59pm
+deadline submit lab report /by 2020-10-10
 list
-event party /at midnight
+event party /at 2020-09-08
 list
 done 1
 done 2
@@ -10,16 +10,18 @@ done 3
 list
 deadline
 deadline do ip
-deadline /by 10:00am
+deadline /by 2020-10-05
 event
 event party
-event /at midnight
+event /at 2020-08-08
 random-command
 todo buy detergent
 todo finish up orbital poster
-event supper /at 10pm
+event supper /at 2020-10-02
 list
 delete 3
 delete 2
 list
+delete 100
+done 101
 bye
