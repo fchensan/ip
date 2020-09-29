@@ -25,15 +25,16 @@ public class TaskParser {
      * Given a Task input in the form of "DESCRIPTION /identifier ARGUMENT", returns the description.
      *
      * @param input user input string
+     * @param itemType the name of the Task type to be used in error messages
      * @return the description part of the user input
      * @throws DukeNoDescriptionException if the input is missing the description part
      */
-    private static String parseDescription(String input) throws DukeNoDescriptionException {
+    private static String parseDescription(String input, String itemType) throws DukeNoDescriptionException {
         String description;
         int argumentStartIndex = input.indexOf("/");
 
         if (argumentStartIndex == 0 || input.length() == 0) {
-            throw new DukeNoDescriptionException();
+            throw new DukeNoDescriptionException(itemType);
         } else if (argumentStartIndex != -1) {
             description = input.substring(0, argumentStartIndex - 1);
         } else {
@@ -62,6 +63,21 @@ public class TaskParser {
         return input.substring(startIndex);
     }
 
+    private LocalDateTime parseDateTimeArgument(String input, String identifier)
+            throws DukeNoArgumentException, DukeInvalidDateTimeException {
+
+        String timeInString = parseArgument(input, "/at");
+        LocalDateTime dateTime;
+
+        try {
+            dateTime = LocalDateTime.parse(timeInString, dateTimeFormatter);
+        } catch (DateTimeParseException e) {
+            throw new DukeInvalidDateTimeException();
+        }
+
+        return dateTime;
+    }
+
     /**
      * Creates a new Todo object with the user input as the description.
      *
@@ -70,13 +86,8 @@ public class TaskParser {
      * @throws DukeNoDescriptionException if the input does not contain the description
      */
     public Todo parseTodo(String input) throws DukeNoDescriptionException {
-        String description;
 
-        try {
-            description = parseDescription(input);
-        } catch (DukeNoDescriptionException e) {
-            throw new DukeNoDescriptionException("todo");
-        }
+        String description = parseDescription(input, "todo");
 
         return new Todo(description);
     }
@@ -92,24 +103,11 @@ public class TaskParser {
      */
     public Deadline parseDeadline(String input) throws DukeNoArgumentException, DukeInvalidDateTimeException,
             DukeNoDescriptionException {
-        String description;
 
-        try {
-            description = parseDescription(input);
-        } catch (DukeNoDescriptionException e) {
-            throw new DukeNoDescriptionException("deadline");
-        }
+        String description = parseDescription(input, "deadline");
+        LocalDateTime dateTime = parseDateTimeArgument(input, "/by");
 
-        String byInString = parseArgument(input, "/by");
-        LocalDateTime by;
-
-        try {
-            by = LocalDateTime.parse(byInString, dateTimeFormatter);
-        } catch (DateTimeParseException e) {
-            throw new DukeInvalidDateTimeException();
-        }
-
-        return new Deadline(description, by, dateTimeFormatter);
+        return new Deadline(description, dateTime, dateTimeFormatter);
     }
 
     /**
@@ -123,23 +121,10 @@ public class TaskParser {
      */
     public Event parseEvent(String input) throws DukeNoArgumentException, DukeInvalidDateTimeException,
             DukeNoDescriptionException {
-        String description;
 
-        try {
-            description = parseDescription(input);
-        } catch (DukeNoDescriptionException e) {
-            throw new DukeNoDescriptionException("event");
-        }
+        String description = parseDescription(input, "event");
+        LocalDateTime dateTime = parseDateTimeArgument(input, "/at");
 
-        String timeInString = parseArgument(input, "/at");
-        LocalDateTime time;
-
-        try {
-            time = LocalDateTime.parse(timeInString, dateTimeFormatter);
-        } catch (DateTimeParseException e) {
-            throw new DukeInvalidDateTimeException();
-        }
-
-        return new Event(description, time, dateTimeFormatter);
+        return new Event(description, dateTime, dateTimeFormatter);
     }
 }
