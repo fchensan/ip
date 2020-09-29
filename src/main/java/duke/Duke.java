@@ -63,6 +63,7 @@ public class Duke {
                 ui.printErrorMessage(e.getMessage());
             }
 
+            storage.save(tasks);
         } while (!(command instanceof CommandExit));
     }
 
@@ -77,6 +78,5 @@ public class Duke {
         showTasksForToday();
 
         performInputLoop();
-        storage.save(tasks);
     }
 }
