@@ -26,6 +26,6 @@ public class CommandFind extends Command {
         TaskList matchingTasks = tasks.findTasks(searchPhrase);
 
         ui.printMessage("Here are some matching tasks:");
-        ui.printTasksList(matchingTasks);
+        ui.printTasksList(matchingTasks, false);
     }
 }

@@ -21,6 +21,6 @@ public class CommandPrintTaskList extends Command{
 
     @Override
     public void execute(TaskList tasks, TextUi ui) {
-        ui.printTasksList(tasks);
+        ui.printTasksList(tasks, true);
     }
 }

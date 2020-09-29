@@ -46,9 +46,11 @@ public class TextUi {
      *
      * @param tasks the list of tasks to be printed
      */
-    public void printTasksList(ArrayList<Task> tasks) {
+    public void printTasksList(ArrayList<Task> tasks, boolean isNumberShown) {
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.print(i + 1 + ". ");
+            if (isNumberShown) {
+                System.out.print(i + 1 + ". ");
+            }
             System.out.println(tasks.get(i).toString());
         }
     }

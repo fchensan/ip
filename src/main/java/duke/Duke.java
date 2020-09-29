@@ -44,7 +44,7 @@ public class Duke {
             ui.printMessage("You have no deadlines or events today!");
         } else {
             ui.printMessage("Here are your deadlines or events for today: ");
-            ui.printTasksList(tasksForToday);
+            ui.printTasksList(tasksForToday, false);
         }
     }
 
