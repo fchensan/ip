@@ -66,7 +66,7 @@ public class TaskParser {
     private LocalDateTime parseDateTimeArgument(String input, String identifier)
             throws DukeNoArgumentException, DukeInvalidDateTimeException {
 
-        String timeInString = parseArgument(input, "/at");
+        String timeInString = parseArgument(input, identifier);
         LocalDateTime dateTime;
 
         try {

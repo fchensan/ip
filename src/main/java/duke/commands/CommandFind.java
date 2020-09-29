@@ -23,13 +23,7 @@ public class CommandFind extends Command {
 
     @Override
     public void execute(TaskList tasks, TextUi ui) {
-        TaskList matchingTasks = new TaskList();
-
-        for (Task task : tasks) {
-            if (task.getDescription().contains(searchPhrase)) {
-                matchingTasks.add(task);
-            }
-        }
+        TaskList matchingTasks = tasks.findTasks(searchPhrase);
 
         ui.printMessage("Here are some matching tasks:");
         ui.printTasksList(matchingTasks);

@@ -6,6 +6,7 @@ import duke.parsers.Parser;
 import duke.parsers.TaskParser;
 import duke.task.TaskList;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Duke {
@@ -36,6 +37,17 @@ public class Duke {
 
     private static TaskList tasks = new TaskList();
 
+    private static void showTasksForToday() {
+        TaskList tasksForToday = tasks.getTasksByDate(LocalDate.now());
+
+        if (tasksForToday.size() == 0) {
+            ui.printMessage("You have no deadlines or events today!");
+        } else {
+            ui.printMessage("Here are your deadlines or events for today: ");
+            ui.printTasksList(tasksForToday);
+        }
+    }
+
     private static void performInputLoop() {
         String input;
         Command command = null;
@@ -61,6 +73,9 @@ public class Duke {
         if (!storage.performFileSetup(tasks)) {
             return;
         }
+
+        showTasksForToday();
+
         performInputLoop();
         storage.save(tasks);
     }
