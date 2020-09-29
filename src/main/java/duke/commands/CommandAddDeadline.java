@@ -11,13 +11,16 @@ public class CommandAddDeadline extends CommandAddTask {
 
     private Deadline deadline;
 
-    public CommandAddDeadline() {
+    private TaskParser taskParser;
+
+    public CommandAddDeadline(TaskParser taskParser) {
         this.keyword = DEFAULT_KEYWORD;
+        this.taskParser = taskParser;
     }
 
     @Override
     public void setup(String input) throws DukeException {
-        deadline = TaskParser.parseDeadline(input);
+        deadline = taskParser.parseDeadline(input);
     }
 
     @Override

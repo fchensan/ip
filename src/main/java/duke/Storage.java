@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,16 +17,18 @@ import java.util.Scanner;
 public class Storage {
     private TextUi ui;
     private File storageFile;
-
     private String storageFilepath;
+    private DateTimeFormatter dateTimeFormatter;
 
-    public Storage(TextUi ui, String storageFilepath) {
+    public Storage(TextUi ui, String storageFilepath, DateTimeFormatter dateTimeFormatter) {
         this.ui = ui;
         this.storageFilepath = storageFilepath;
+        this.dateTimeFormatter = dateTimeFormatter;
     }
 
     private Task deserializeTask(String inputLine) {
         Task task = null;
+        LocalDateTime dateTime;
 
         String[] lineSegments = inputLine.split(";");
         boolean isDone = lineSegments[1].equals("1");
@@ -34,10 +38,12 @@ public class Storage {
             task = new Todo(isDone, lineSegments[2]);
             break;
         case Deadline.IDENTIFIER:
-            task = new Deadline(isDone, lineSegments[2], lineSegments[3]);
+            dateTime = LocalDateTime.parse(lineSegments[3], dateTimeFormatter);
+            task = new Deadline(isDone, lineSegments[2], dateTime, dateTimeFormatter);
             break;
         case Event.IDENTIFIER:
-            task = new Event(isDone, lineSegments[2], lineSegments[3]);
+            dateTime = LocalDateTime.parse(lineSegments[3], dateTimeFormatter);
+            task = new Event(isDone, lineSegments[2], dateTime, dateTimeFormatter);
             break;
         default:
             break;
@@ -47,6 +53,7 @@ public class Storage {
     }
 
     private String serializeTask(Task task) {
+
         String line = "";
 
         line += task.getIdentifier() + ";";
@@ -54,9 +61,9 @@ public class Storage {
         line += task.getDescription();
 
         if (task instanceof Deadline) {
-            line += ";" + ((Deadline) task).getBy();
+            line += ";" + ((Deadline) task).getBy().format(dateTimeFormatter);
         } else if (task instanceof Event) {
-            line += ";" + ((Event) task).getAt();
+            line += ";" + ((Event) task).getAt().format(dateTimeFormatter);
         }
 
         return line;

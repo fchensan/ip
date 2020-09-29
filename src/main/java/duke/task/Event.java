@@ -1,20 +1,27 @@
 package duke.task;
 
+import duke.exceptions.DukeInvalidDateTimeException;
+
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Event extends Task {
     public static final String IDENTIFIER = "E";
 
     private LocalDateTime at;
+    private DateTimeFormatter dateTimeFormatter;
 
-    public Event(String description, String at) {
+    public Event(String description, LocalDateTime at, DateTimeFormatter dateTimeFormatter) {
         super(description);
-        this.at = LocalDateTime.parse(at);
+        this.at = at;
+        this.dateTimeFormatter = dateTimeFormatter;
     }
 
-    public Event(boolean isDone, String description, String at) {
+    public Event(boolean isDone, String description, LocalDateTime at, DateTimeFormatter dateTimeFormatter) {
         super(isDone, description);
-        this.at = LocalDateTime.parse(at);
+        this.at = at;
+        this.dateTimeFormatter = dateTimeFormatter;
     }
 
     @Override
@@ -28,6 +35,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[" + IDENTIFIER + "] " + super.toString() + " (at: " + at + ")";
+        return "[" + IDENTIFIER + "] " + super.toString() + " (at: " + at.format(dateTimeFormatter) + ")";
     }
 }

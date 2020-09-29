@@ -11,13 +11,16 @@ public class CommandAddTodo extends CommandAddTask {
 
     private Todo todo;
 
-    public CommandAddTodo() {
+    private TaskParser taskParser;
+
+    public CommandAddTodo(TaskParser taskParser) {
         this.keyword = DEFAULT_KEYWORD;
+        this.taskParser = taskParser;
     }
 
     @Override
     public void setup(String input) throws DukeNoDescriptionException {
-        todo = TaskParser.parseTodo(input);
+        todo = taskParser.parseTodo(input);
     }
 
     @Override

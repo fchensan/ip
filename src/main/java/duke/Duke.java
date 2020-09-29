@@ -1,19 +1,40 @@
 package duke;
 
-import duke.commands.Command;
-import duke.commands.CommandExit;
+import duke.commands.*;
 import duke.exceptions.DukeException;
 import duke.parsers.Parser;
+import duke.parsers.TaskParser;
 import duke.task.TaskList;
+
+import java.time.format.DateTimeFormatter;
 
 public class Duke {
     private static final String STORAGE_FILEPATH = "duke-data.txt";
+    private static final String DATETIME_FORMAT = "yyyy-MM-dd HH:mm";
 
-    private static TextUi ui;
-    private static Storage storage;
-    private static Parser parser;
+    private static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DATETIME_FORMAT);
+    private static TaskParser taskParser = new TaskParser(dateTimeFormatter);
 
-    private static TaskList tasks;
+    private static TextUi ui = new TextUi();
+    private static Storage storage = new Storage(ui, STORAGE_FILEPATH, dateTimeFormatter);
+
+    /**
+     * A list of commands available to the user.
+     */
+    private static final Command[] commandList = {
+            new CommandAddTodo(taskParser),
+            new CommandAddDeadline(taskParser),
+            new CommandAddEvent(taskParser),
+            new CommandPrintTaskList(),
+            new CommandMarkDone(),
+            new CommandDeleteTask(),
+            new CommandFind(),
+            new CommandExit(),
+    };
+
+    private static Parser parser = new Parser(commandList);
+
+    private static TaskList tasks = new TaskList();
 
     private static void performInputLoop() {
         String input;
@@ -34,11 +55,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        ui = new TextUi();
-        storage = new Storage(ui, STORAGE_FILEPATH);
-        parser = new Parser();
-        tasks = new TaskList();
-
         ui.printDukeLogo();
         ui.printWelcomeMessage();
 

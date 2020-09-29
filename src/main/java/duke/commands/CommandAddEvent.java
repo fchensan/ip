@@ -4,6 +4,7 @@ import duke.TextUi;
 import duke.exceptions.DukeException;
 import duke.parsers.TaskParser;
 import duke.task.Event;
+import duke.task.Task;
 import duke.task.TaskList;
 
 public class CommandAddEvent extends CommandAddTask {
@@ -11,12 +12,15 @@ public class CommandAddEvent extends CommandAddTask {
 
     private Event event;
 
-    public CommandAddEvent() {
+    private TaskParser taskParser;
+
+    public CommandAddEvent(TaskParser taskParser) {
         this.keyword = DEFAULT_KEYWORD;
+        this.taskParser = taskParser;
     }
 
     public void setup(String input) throws DukeException {
-        event = TaskParser.parseEvent(input);
+        event = taskParser.parseEvent(input);
     }
 
     @Override

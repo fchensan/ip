@@ -1,6 +1,7 @@
 package duke.parsers;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.DukeInvalidDateTimeException;
 import duke.exceptions.DukeNoArgumentException;
 import duke.exceptions.DukeNoDescriptionException;
 import duke.task.Deadline;
@@ -8,12 +9,18 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * Creates a new instance of a Task with a description and attribute, based on raw user input.
  */
 public class TaskParser {
-    public TaskParser() {
+    private DateTimeFormatter dateTimeFormatter;
 
+    public TaskParser(DateTimeFormatter dateTimeFormatter) {
+        this.dateTimeFormatter = dateTimeFormatter;
     }
 
     /**
@@ -73,7 +80,7 @@ public class TaskParser {
      * @param input the user input String which will be the description
      * @return a new Task object
      */
-    public static Todo parseTodo(String input) throws DukeNoDescriptionException {
+    public Todo parseTodo(String input) throws DukeNoDescriptionException {
         String description;
 
         try {
@@ -92,8 +99,8 @@ public class TaskParser {
      * @return a new Deadline object
      * @throws DukeException
      */
-    public static Deadline parseDeadline(String input) throws DukeException {
-        String description, by;
+    public Deadline parseDeadline(String input) throws DukeException {
+        String description;
 
         try {
             description = parseDescription(input);
@@ -101,9 +108,16 @@ public class TaskParser {
             throw new DukeNoDescriptionException("deadline");
         }
 
-        by = parseArgument(input, "/by");
+        String byInString = parseArgument(input, "/by");
+        LocalDateTime by;
 
-        return new Deadline(description, by);
+        try {
+            by = LocalDateTime.parse(byInString, dateTimeFormatter);
+        } catch (DateTimeParseException e) {
+            throw new DukeInvalidDateTimeException();
+        }
+
+        return new Deadline(description, by, dateTimeFormatter);
     }
 
     /**
@@ -113,8 +127,8 @@ public class TaskParser {
      * @return a new Event object
      * @throws DukeException
      */
-    public static Event parseEvent(String input) throws DukeException {
-        String description, time;
+    public Event parseEvent(String input) throws DukeException {
+        String description;
 
         try {
             description = parseDescription(input);
@@ -122,8 +136,15 @@ public class TaskParser {
             throw new DukeNoDescriptionException("event");
         }
 
-        time = parseArgument(input, "/at");
+        String timeInString = parseArgument(input, "/at");
+        LocalDateTime time;
 
-        return new Event(description, time);
+        try {
+            time = LocalDateTime.parse(timeInString, dateTimeFormatter);
+        } catch (DateTimeParseException e) {
+            throw new DukeInvalidDateTimeException();
+        }
+
+        return new Event(description, time, dateTimeFormatter);
     }
 }

@@ -3,24 +3,19 @@ package duke.parsers;
 import duke.commands.*;
 import duke.exceptions.DukeException;
 
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 /**
  * Parses the user's input.
  */
 public class Parser {
 
-    /**
-     * A list of commands available to the user.
-     */
-    private Command[] commandList = {
-      new CommandAddTodo(),
-      new CommandAddDeadline(),
-      new CommandAddEvent(),
-      new CommandPrintTaskList(),
-      new CommandMarkDone(),
-      new CommandDeleteTask(),
-      new CommandFind(),
-      new CommandExit(),
-    };
+    private Command[] commandList;
+
+    public Parser(Command[] commandList) {
+        this.commandList = commandList;
+    }
 
     /**
      * Parses the user input and returns a Command from commandList that should be executed.
