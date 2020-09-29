@@ -15,7 +15,7 @@ public class CommandExit extends Command {
     }
 
     @Override
-    public void setup(String input) throws DukeException {
+    public void setup(String input) {
 
     }
 

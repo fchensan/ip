@@ -1,11 +1,7 @@
 package duke.task;
 
-import duke.Duke;
-import duke.exceptions.DukeInvalidDateTimeException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
     public static final String IDENTIFIER = "D";

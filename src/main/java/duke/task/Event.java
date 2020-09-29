@@ -1,10 +1,7 @@
 package duke.task;
 
-import duke.exceptions.DukeInvalidDateTimeException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public class Event extends Task {
     public static final String IDENTIFIER = "E";

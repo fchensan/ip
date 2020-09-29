@@ -1,8 +1,7 @@
 package duke.commands;
 
-import duke.exceptions.DukeException;
-import duke.task.TaskList;
 import duke.TextUi;
+import duke.task.TaskList;
 
 /**
  * Represents an unrecognized command.
@@ -10,7 +9,7 @@ import duke.TextUi;
 public class CommandUnfound extends Command{
 
     @Override
-    public void setup(String input) throws DukeException {
+    public void setup(String input) {
 
     }
 

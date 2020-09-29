@@ -1,9 +1,8 @@
 package duke.commands;
 
-import duke.exceptions.DukeException;
-import duke.exceptions.DukeNoDescriptionException;
-import duke.task.TaskList;
 import duke.TextUi;
+import duke.exceptions.DukeException;
+import duke.task.TaskList;
 
 /**
  * Represents a user command.

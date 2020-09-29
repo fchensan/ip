@@ -1,10 +1,8 @@
 package duke.parsers;
 
-import duke.commands.*;
+import duke.commands.Command;
+import duke.commands.CommandUnfound;
 import duke.exceptions.DukeException;
-
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 /**
  * Parses the user's input.
@@ -25,7 +23,6 @@ public class Parser {
      * @throws DukeException
      */
     public Command parse(String input) throws DukeException {
-        int taskIndex;
         String inputFirstWord = input.split(" ")[0];
         String inputWithoutCommand = input.substring(inputFirstWord.length()).trim();
 

@@ -4,7 +4,6 @@ import duke.TextUi;
 import duke.exceptions.DukeException;
 import duke.parsers.TaskParser;
 import duke.task.Event;
-import duke.task.Task;
 import duke.task.TaskList;
 
 public class CommandAddEvent extends CommandAddTask {

@@ -6,7 +6,6 @@ import duke.exceptions.DukeNoArgumentException;
 import duke.exceptions.DukeNoDescriptionException;
 import duke.task.Deadline;
 import duke.task.Event;
-import duke.task.Task;
 import duke.task.Todo;
 
 import java.time.LocalDateTime;
@@ -62,16 +61,6 @@ public class TaskParser {
 
         int startIndex = input.indexOf(identifier) + identifier.length() + 1;
         return input.substring(startIndex);
-    }
-
-    /**
-     * Creates a new Task object with the user input as the description.
-     *
-     * @param input the user input String which will be the description
-     * @return a new Task object
-     */
-    public static Task parseTask(String input) {
-        return new Task(input);
     }
 
     /**
