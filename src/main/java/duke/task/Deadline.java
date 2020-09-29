@@ -1,20 +1,20 @@
 package duke.task;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Deadline extends Task {
     public static final String IDENTIFIER = "D";
 
-    private LocalDate by;
+    private LocalDateTime by;
 
     public Deadline(String description, String by) {
         super(description);
-        this.by = LocalDate.parse(by);
+        this.by = LocalDateTime.parse(by);
     }
 
     public Deadline(boolean isDone, String description, String by) {
         super(isDone, description);
-        this.by = LocalDate.parse(by);
+        this.by = LocalDateTime.parse(by);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class Deadline extends Task {
         return IDENTIFIER;
     }
 
-    public LocalDate getBy() {
+    public LocalDateTime getBy() {
         return by;
     }
 

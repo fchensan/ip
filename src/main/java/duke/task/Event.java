@@ -1,20 +1,20 @@
 package duke.task;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Event extends Task {
     public static final String IDENTIFIER = "E";
 
-    private LocalDate at;
+    private LocalDateTime at;
 
     public Event(String description, String at) {
         super(description);
-        this.at = LocalDate.parse(at);
+        this.at = LocalDateTime.parse(at);
     }
 
     public Event(boolean isDone, String description, String at) {
         super(isDone, description);
-        this.at = LocalDate.parse(at);
+        this.at = LocalDateTime.parse(at);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class Event extends Task {
         return IDENTIFIER;
     }
 
-    public LocalDate getAt() {
+    public LocalDateTime getAt() {
         return at;
     }
 
