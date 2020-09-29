@@ -23,7 +23,7 @@ public class CommandFind extends Command {
         TaskList matchingTasks = new TaskList();
 
         for (Task task : tasks) {
-            if (task.getDescription().indexOf(searchPhrase) != -1) {
+            if (task.getDescription().contains(searchPhrase)) {
                 matchingTasks.add(task);
             }
         }
