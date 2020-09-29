@@ -1,6 +1,7 @@
 package duke.commands;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.DukeIndexOutOfBoundsException;
 import duke.exceptions.DukeNoArgumentException;
 import duke.task.TaskList;
 import duke.TextUi;
@@ -28,8 +29,17 @@ public class CommandMarkDone extends Command{
     }
 
     @Override
-    public void execute(TaskList tasks, TextUi ui) {
-        tasks.markAsDone(taskIndex);
+    public void execute(TaskList tasks, TextUi ui) throws DukeIndexOutOfBoundsException {
+        if (tasks.size() == 0) {
+            ui.printMessage("You have no tasks.");
+            return;
+        }
+
+        try {
+            tasks.markAsDone(taskIndex);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeIndexOutOfBoundsException("task number", 1, tasks.size());
+        }
 
         ui.printTaskMarkedAsDone(tasks.get(taskIndex));
     }

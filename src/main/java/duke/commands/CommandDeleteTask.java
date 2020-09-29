@@ -1,6 +1,7 @@
 package duke.commands;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.DukeIndexOutOfBoundsException;
 import duke.exceptions.DukeNoArgumentException;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -29,8 +30,19 @@ public class CommandDeleteTask extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, TextUi ui) {
-        Task removedTask = tasks.remove(taskIndex);
+    public void execute(TaskList tasks, TextUi ui) throws DukeIndexOutOfBoundsException {
+        if (tasks.size() == 0) {
+            ui.printMessage("You have no tasks.");
+            return;
+        }
+
+        Task removedTask;
+
+        try {
+            removedTask = tasks.remove(taskIndex);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeIndexOutOfBoundsException("task number", 1, tasks.size());
+        }
 
         ui.printTaskDeleted(removedTask);
         ui.printNumberOfTasksLeft(tasks.size());
