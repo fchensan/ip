@@ -6,6 +6,9 @@ import duke.parsers.TaskParser;
 import duke.task.Event;
 import duke.task.TaskList;
 
+/**
+ * Represents a command to add an Event.
+ */
 public class CommandAddEvent extends CommandAddTask {
     public static final String DEFAULT_KEYWORD = "event";
 

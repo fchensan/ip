@@ -6,6 +6,9 @@ import duke.parsers.TaskParser;
 import duke.task.Deadline;
 import duke.task.TaskList;
 
+/**
+ * Represents a command to add a Deadline.
+ */
 public class CommandAddDeadline extends CommandAddTask {
     public static final String DEFAULT_KEYWORD = "deadline";
 

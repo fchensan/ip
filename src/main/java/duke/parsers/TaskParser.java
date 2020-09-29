@@ -1,6 +1,5 @@
 package duke.parsers;
 
-import duke.exceptions.DukeException;
 import duke.exceptions.DukeInvalidDateTimeException;
 import duke.exceptions.DukeNoArgumentException;
 import duke.exceptions.DukeNoDescriptionException;
@@ -13,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Creates a new instance of a Task with a description and attribute, based on raw user input.
+ * Returns a new instance of a Task with a description and attribute, based on raw user input.
  */
 public class TaskParser {
     private DateTimeFormatter dateTimeFormatter;
@@ -23,11 +22,11 @@ public class TaskParser {
     }
 
     /**
-     * Given a Task input in the form of "<description> /identifier <argument>", returns the description.
+     * Given a Task input in the form of "DESCRIPTION /identifier ARGUMENT", returns the description.
      *
-     * @param input
-     * @return
-     * @throws DukeNoDescriptionException
+     * @param input user input string
+     * @return the description part of the user input
+     * @throws DukeNoDescriptionException if the input is missing the description part
      */
     private static String parseDescription(String input) throws DukeNoDescriptionException {
         String description;
@@ -45,12 +44,12 @@ public class TaskParser {
     }
 
     /**
-     * Given a Task input in the form of "<description> /identifier <argument>", returns the argument.
+     * Given a Task input in the form of "DESCRIPTION /identifier ARGUMENT", returns the argument.
      *
-     * @param input user input String
-     * @param identifier the identifier as a string, such as "/at" or "/by"
-     * @return the argument as a string
-     * @throws DukeNoArgumentException
+     * @param input user input string
+     * @param identifier the identifier, such as "/at" or "/by"
+     * @return the argument part of the user input
+     * @throws DukeNoArgumentException if the input is missing the argument part
      */
     private static String parseArgument(String input, String identifier) throws DukeNoArgumentException {
         int identifierIndex = input.indexOf(identifier);
@@ -66,8 +65,9 @@ public class TaskParser {
     /**
      * Creates a new Todo object with the user input as the description.
      *
-     * @param input the user input String which will be the description
+     * @param input the user input string, which will be the description
      * @return a new Task object
+     * @throws DukeNoDescriptionException if the input does not contain the description
      */
     public Todo parseTodo(String input) throws DukeNoDescriptionException {
         String description;
@@ -82,13 +82,16 @@ public class TaskParser {
     }
 
     /**
-     * Creates a new Deadline object based on user input in the form of "Title /by yyyy-mm-dd".
+     * Creates a new Deadline object based on user input in the form of "DESCRIPTION /by DATETIME".
      *
-     * @param input user input String
+     * @param input user input string
      * @return a new Deadline object
-     * @throws DukeException
+     * @throws DukeNoArgumentException if the input does not contain the argument
+     * @throws DukeInvalidDateTimeException if the input contains invalid datetime format
+     * @throws DukeNoDescriptionException if the input does not contain the description
      */
-    public Deadline parseDeadline(String input) throws DukeException {
+    public Deadline parseDeadline(String input) throws DukeNoArgumentException, DukeInvalidDateTimeException,
+            DukeNoDescriptionException {
         String description;
 
         try {
@@ -110,13 +113,16 @@ public class TaskParser {
     }
 
     /**
-     * Creates a new Event object based on user input in the form of "Title /at yyyy-mm-dd".
+     * Creates a new Event object based on user input in the form of "DESCRIPTION /at DATETIME".
      *
-     * @param input user input String
+     * @param input user input string
      * @return a new Event object
-     * @throws DukeException
+     * @throws DukeNoArgumentException if the input does not contain the argument
+     * @throws DukeInvalidDateTimeException if the input contains invalid datetime format
+     * @throws DukeNoDescriptionException if the input does not contain the description
      */
-    public Event parseEvent(String input) throws DukeException {
+    public Event parseEvent(String input) throws DukeNoArgumentException, DukeInvalidDateTimeException,
+            DukeNoDescriptionException {
         String description;
 
         try {

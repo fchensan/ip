@@ -8,7 +8,7 @@ import duke.task.TaskList;
 import duke.TextUi;
 
 /**
- * Represents a delete Task command.
+ * Represents a command to delete a Task.
  */
 public class CommandDeleteTask extends Command {
     public static final String DEFAULT_KEYWORD = "delete";

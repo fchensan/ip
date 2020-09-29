@@ -6,6 +6,9 @@ import duke.parsers.TaskParser;
 import duke.task.TaskList;
 import duke.task.Todo;
 
+/**
+ * Represents a command to add a Todo.
+ */
 public class CommandAddTodo extends CommandAddTask {
     public static final String DEFAULT_KEYWORD = "todo";
 

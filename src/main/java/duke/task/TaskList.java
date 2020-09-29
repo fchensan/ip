@@ -3,11 +3,11 @@ package duke.task;
 import java.util.ArrayList;
 
 /**
- * An ArrayList with of Task instances with helper functions.
+ * An ArrayList Task instances with helper functions.
  */
 public class TaskList extends ArrayList<Task> {
     /**
-     * Marks a task as done
+     * Marks a task as done.
      *
      * @param taskIndex the index of the task to be marked as done
      */

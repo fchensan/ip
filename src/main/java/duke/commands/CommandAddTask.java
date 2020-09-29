@@ -1,7 +1,7 @@
 package duke.commands;
 
 /**
- * Represents an add Task command.
+ * Represents a command to add a Task.
  */
 public abstract class CommandAddTask extends Command{
 

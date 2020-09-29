@@ -4,7 +4,7 @@ import duke.TextUi;
 import duke.task.TaskList;
 
 /**
- * Represents an exit command.
+ * Represents a command to exit Duke.
  */
 public class CommandExit extends Command {
     public static final String DEFAULT_KEYWORD = "bye";

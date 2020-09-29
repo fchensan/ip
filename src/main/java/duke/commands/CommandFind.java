@@ -4,6 +4,9 @@ import duke.TextUi;
 import duke.task.Task;
 import duke.task.TaskList;
 
+/**
+ * Represents a command to search for a Task.
+ */
 public class CommandFind extends Command {
     public static final String DEFAULT_KEYWORD = "find";
 

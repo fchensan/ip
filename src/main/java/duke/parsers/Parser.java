@@ -19,8 +19,8 @@ public class Parser {
      * Parses the user input and returns a Command from commandList that should be executed.
      *
      * @param input the raw String input that the user types in
-     * @return a Command associated with the user's input
-     * @throws DukeException
+     * @return the Command associated with the user's input
+     * @throws DukeException if an error occurs when calling the <code>setup</code> function of the Command instance.
      */
     public Command parse(String input) throws DukeException {
         String inputFirstWord = input.split(" ")[0];
