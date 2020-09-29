@@ -1,6 +1,6 @@
 # User Guide
 
-Duke is a **command-line chat bot app that helps you manage your todos, deadlines, and events**
+Duke is a **command-line chat bot app that helps you keep track of your todos, deadlines, and events**
 
 * [Quick Start](#quick-start)
 * [Features](#features)
@@ -41,29 +41,29 @@ Expected outcome:
 
 Adds a new Deadline with a date.
 
-Format: `deadline DESCRIPTION /by yyyy-mm-dd`
+Format: `deadline DESCRIPTION /by yyyy-MM-dd HH:mm`
 
 Example of usage: 
 
-`deadline submit report /by 2020-10-12`
+`deadline submit progress report /by 2020-10-10 23:59`
 
 Expected outcome:
 
-`Added: [D] ✘ submit report (by: 2020-10-12)`
+`Added: [D] ✘ submit progress report (by: 2020-10-10 23:59)`
 
 ### `Event` - Add a new Event item
 
 Adds a new Event with a date.
 
-Format: `event DESCRIPTION /at yyyy-mm-dd`
+Format: `event DESCRIPTION /at yyyy-MM-dd HH:mm`
 
 Example of usage: 
 
-`event appreciation dinner /at 2020-09-08`
+`event dinner with friends /at 2020-10-25 19:00`
 
 Expected outcome:
 
-`Added: [E] ✘ appreciation dinner (at: 2020-09-08)`
+`Added: [E] ✘ dinner with friends (at: 2020-10-25 19:00)`
 
 ### `list` - List all items
 
@@ -115,6 +115,21 @@ You now have 2 task(s) left.
 ____________________________________________________________
 ```
 
+### `find` - Find an item
+
+Find an item with a search phrase.
+
+Format: `find SEARCH_PHRASE`
+
+Example of usage: 
+
+```
+>> find dinner
+Here are some matching tasks:
+[E] ✘ dinner date (at: 2020-10-20 18:00)
+[E] ✘ dinner with friends (at: 2020-10-25 19:00)
+```
+
 ### `bye` - Exit out of Duke
 
 Exits Duke and saves all data into `duke-data.txt`.
@@ -127,17 +142,18 @@ Good bye!
 
 ## FAQ
 **1. How do I move my data to another computer?**
-    Simply copy `duke-data.txt` to the same directory as the `ip.jar` in the other coomputer.
+    Simply copy `duke-data.txt` to the other computer. You should run `ip.jar` from the same directory 
+    where `duke-data.txt` is.
 
 ## Commmand Summary
 
 **Action** | **Format, Examples**
 ------------ | -------------
-**todo**|`todo DESCRIPTION` <br>example: `todo CS1231 homework`
-**deadline**|`deadline DESCRIPTION /by yyyy-mm-dd` <br>example: `deadline UTC1001 essay /by 2020-10-09`
-**event**|`event DESCRIPTION /at yyyy-mm-dd`<br>example: `event beach party /at 2020-10-09`
+**todo**|`todo DESCRIPTION` <br>e.g. `todo CS1231 homework`
+**deadline**|`deadline DESCRIPTION /by yyyy-mm-dd` <br>e.g. `deadline UTC1001 essay /by 2020-10-09`
+**event**|`event DESCRIPTION /at yyyy-mm-dd`<br>e.g. `event beach party /at 2020-10-09`
 **list**|`list`
-**done**|`done <index>` <br>example: `done 3`
-**delete**|`delete <index>` <br>example: `delete 2`
-**find**|`find <keyword>`<br>example: `find assignment`
+**done**|`done <index>` <br>e.g. `done 3`
+**delete**|`delete <index>` <br>e.g. `delete 2`
+**find**|`find <keyword>`<br>e.g. `find assignment`
 **exit**|`bye`
