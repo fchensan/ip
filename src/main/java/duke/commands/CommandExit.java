@@ -1,8 +1,7 @@
 package duke.commands;
 
-import duke.exceptions.DukeException;
-import duke.task.TaskList;
 import duke.TextUi;
+import duke.task.TaskList;
 
 /**
  * Represents an exit command.
