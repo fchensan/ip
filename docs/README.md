@@ -10,15 +10,15 @@ Duke is a **command-line chat bot app that helps you keep track of your todos, d
     * [List all items : `list`](#list---list-all-items)
     * [Mark an item as done : `done`](#done---mark-an-item-as-done)
     * [Delete an item : `delete`](#delete---delete-an-item)
+    * [Find an item : `find`](#find---find-an-item)
     * [Exit out of Duke : `bye`](#bye---exit-out-of-duke)
 * [FAQ](#faq)
 * [Command Summary](#commmand-summary)
 
 ## Quick start
 1. Make sure you have Java 11 or above installed.
-2. Download the latest `ip.jar`.
+2. Download the latest [`ip.jar`](https://github.com/fchensan/ip/releases/tag/A-Release).
 3. Copy the file to a folder where you want to run it from.
-This folder will contain .
 4. Using the terminal, navigate to the directory where the `ip.jar` file is.
 5. Run `java -jar ip.jar`
 6. You should see a welcome message. It is now ready to go.
@@ -150,8 +150,8 @@ Good bye!
 **Action** | **Format, Examples**
 ------------ | -------------
 **todo**|`todo DESCRIPTION` <br>e.g. `todo CS1231 homework`
-**deadline**|`deadline DESCRIPTION /by yyyy-mm-dd` <br>e.g. `deadline UTC1001 essay /by 2020-10-09`
-**event**|`event DESCRIPTION /at yyyy-mm-dd`<br>e.g. `event beach party /at 2020-10-09`
+**deadline**|`deadline DESCRIPTION /by yyyy-mm-dd` <br>e.g. `deadline UTC1001 essay /by 2020-10-09 20:00`
+**event**|`event DESCRIPTION /at yyyy-mm-dd`<br>e.g. `event beach party /at 2020-10-09 10:00`
 **list**|`list`
 **done**|`done <index>` <br>e.g. `done 3`
 **delete**|`delete <index>` <br>e.g. `delete 2`
