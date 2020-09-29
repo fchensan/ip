@@ -1,7 +1,7 @@
 package duke.parsers;
 
 import duke.commands.Command;
-import duke.commands.CommandUnfound;
+import duke.commands.CommandNotFound;
 import duke.exceptions.DukeException;
 
 /**
@@ -33,6 +33,6 @@ public class Parser {
             }
         }
 
-        return new CommandUnfound();
+        return new CommandNotFound();
     }
 }
