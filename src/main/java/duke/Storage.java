@@ -77,7 +77,7 @@ public class Storage {
         while (s.hasNext()) {
             currLine = s.nextLine();
 
-            if (currLine == "") {
+            if (currLine.equals("")) {
                 return tasks;
             }
 
@@ -93,8 +93,8 @@ public class Storage {
         Task task;
         String textToWrite = "";
 
-        for (int i = 0; i < tasks.size(); i++) {
-            task = tasks.get(i);
+        for (Task value : tasks) {
+            task = value;
             textToWrite += serializeTask(task) + System.lineSeparator();
         }
 
