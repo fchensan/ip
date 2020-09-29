@@ -1,6 +1,9 @@
 package duke.task;
 
 public class Task {
+    private static final String CHECKMARK_DONE = "[DONE]";
+    private static final String CHECKMARK_NOT_DONE = "[    ]";
+
     protected String description;
     protected boolean isDone;
 
@@ -19,7 +22,7 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
+        return (isDone ? CHECKMARK_DONE : CHECKMARK_NOT_DONE); //return tick or X symbols
     }
 
     public String getIdentifier() {
