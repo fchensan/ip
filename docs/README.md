@@ -1,6 +1,6 @@
 # User Guide
 
-Duke is a **command-line chat bot app that helps you keep track of your todos, deadlines, and events**
+Duke is a **command-line chat bot app that helps you keep track of your todos, deadlines, and events.**
 
 * [Quick Start](#quick-start)
 * [Features](#features)
@@ -35,7 +35,7 @@ Example of usage:
 
 Expected outcome:
 
-`Added: [T] ✘ clean up room`
+`Added: [T] [    ] clean up room`
 
 ### `deadline` - Add a new Deadline item
 
@@ -49,7 +49,7 @@ Example of usage:
 
 Expected outcome:
 
-`Added: [D] ✘ submit progress report (by: 2020-10-10 23:59)`
+`Added: [D] [    ] submit progress report (by: 2020-10-10 23:59)`
 
 ### `Event` - Add a new Event item
 
@@ -63,16 +63,16 @@ Example of usage:
 
 Expected outcome:
 
-`Added: [E] ✘ dinner with friends (at: 2020-10-25 19:00)`
+`Added: [E] [    ] dinner with friends (at: 2020-10-25 19:00)`
 
 ### `list` - List all items
 
 Example outcome:
 
 ```
-1. [T] ✘ clean up room
-2. [D] ✘ submit report (by: 2020-10-12)
-3. [E] ✘ appreciation dinner (at: 2020-09-08)
+1. [T] [    ] clean up room
+2. [D] [    ] submit report (by: 2020-10-12 18:00)
+3. [E] [    ] appreciation dinner (at: 2020-09-08 18:00)
 ```
 
 ### `done` - Mark an item as done
@@ -85,9 +85,9 @@ Example of usage:
 
 ```
 >> list
-1. [T] ✘ clean up room
-2. [D] ✘ submit report (by: 2020-10-12)
-3. [E] ✘ party (at: 2020-09-11)
+1. [T] [    ] clean up room
+2. [D] [    ] submit report (by: 2020-10-12 18:00)
+3. [E] [    ] party (at: 2020-09-11 18:00)
 ____________________________________________________________
 >> done 2
 Ok! "submit report" is marked as done!
@@ -104,13 +104,13 @@ Example of usage:
 
 ```
 >> list
-1. [T] ✘ clean up room
-2. [D] ✓ submit report (by: 2020-10-12)
-3. [E] ✘ party (at: 2020-09-11)
+1. [T] [    ] clean up room
+2. [D] [DONE] submit report (by: 2020-10-12 18:00)
+3. [E] [    ] party (at: 2020-09-11 18:00)
 ____________________________________________________________
 >> delete 3
 Ok! I have deleted this task:
-[E] ✘ party (at: 2020-09-11)
+[E] [    ] party (at: 2020-09-11 18:00)
 You now have 2 task(s) left.
 ____________________________________________________________
 ```
@@ -126,8 +126,8 @@ Example of usage:
 ```
 >> find dinner
 Here are some matching tasks:
-[E] ✘ dinner date (at: 2020-10-20 18:00)
-[E] ✘ dinner with friends (at: 2020-10-25 19:00)
+[E] [    ] dinner date (at: 2020-10-20 18:00)
+[E] [    ] dinner with friends (at: 2020-10-25 19:00)
 ```
 
 ### `bye` - Exit out of Duke
