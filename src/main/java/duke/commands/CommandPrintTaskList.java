@@ -7,7 +7,7 @@ import duke.TextUi;
 /**
  * Represents a command to print the task list.
  */
-public class CommandPrintTaskList extends Command{
+public class CommandPrintTaskList extends Command {
     public static final String DEFAULT_KEYWORD = "list";
 
     public CommandPrintTaskList() {

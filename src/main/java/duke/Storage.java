@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- *  Handles saving and reading data in and out of a text file.
+ * Handles saving and reading data in and out of a text file.
  */
 public class Storage {
     private TextUi ui;

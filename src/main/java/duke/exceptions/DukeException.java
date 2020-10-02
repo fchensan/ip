@@ -14,7 +14,7 @@ public class DukeException extends Exception {
         this.message = message;
     }
 
-    public String getMessage(){
+    public String getMessage() {
         return message;
     }
 

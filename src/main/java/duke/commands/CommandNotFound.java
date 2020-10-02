@@ -6,7 +6,7 @@ import duke.task.TaskList;
 /**
  * Represents an unrecognized command.
  */
-public class CommandNotFound extends Command{
+public class CommandNotFound extends Command {
 
     @Override
     public void setup(String input) {

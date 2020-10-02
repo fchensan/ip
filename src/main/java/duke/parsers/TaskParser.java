@@ -24,7 +24,7 @@ public class TaskParser {
     /**
      * Given a Task input in the form of "DESCRIPTION /identifier ARGUMENT", returns the description.
      *
-     * @param input user input string
+     * @param input    user input string
      * @param itemType the name of the Task type to be used in error messages
      * @return the description part of the user input
      * @throws DukeNoDescriptionException if the input is missing the description part
@@ -47,7 +47,7 @@ public class TaskParser {
     /**
      * Given a Task input in the form of "DESCRIPTION /identifier ARGUMENT", returns the argument.
      *
-     * @param input user input string
+     * @param input      user input string
      * @param identifier the identifier, such as "/at" or "/by"
      * @return the argument part of the user input
      * @throws DukeNoArgumentException if the input is missing the argument part
@@ -97,9 +97,9 @@ public class TaskParser {
      *
      * @param input user input string
      * @return a new Deadline object
-     * @throws DukeNoArgumentException if the input does not contain the argument
+     * @throws DukeNoArgumentException      if the input does not contain the argument
      * @throws DukeInvalidDateTimeException if the input contains invalid datetime format
-     * @throws DukeNoDescriptionException if the input does not contain the description
+     * @throws DukeNoDescriptionException   if the input does not contain the description
      */
     public Deadline parseDeadline(String input) throws DukeNoArgumentException, DukeInvalidDateTimeException,
             DukeNoDescriptionException {
@@ -115,9 +115,9 @@ public class TaskParser {
      *
      * @param input user input string
      * @return a new Event object
-     * @throws DukeNoArgumentException if the input does not contain the argument
+     * @throws DukeNoArgumentException      if the input does not contain the argument
      * @throws DukeInvalidDateTimeException if the input contains invalid datetime format
-     * @throws DukeNoDescriptionException if the input does not contain the description
+     * @throws DukeNoDescriptionException   if the input does not contain the description
      */
     public Event parseEvent(String input) throws DukeNoArgumentException, DukeInvalidDateTimeException,
             DukeNoDescriptionException {

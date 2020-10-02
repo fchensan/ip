@@ -12,7 +12,7 @@ public abstract class Command {
 
     public String keyword;
 
-    public Command(){
+    public Command() {
         this.keyword = DEFAULT_KEYWORD;
     }
 
@@ -23,5 +23,6 @@ public abstract class Command {
      * @throws DukeException if there user input is invalid or an error occurs while executing command
      */
     public abstract void setup(String input) throws DukeException;
+
     public abstract void execute(TaskList tasks, TextUi ui) throws DukeException;
 }

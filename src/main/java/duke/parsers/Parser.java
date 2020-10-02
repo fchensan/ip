@@ -26,7 +26,7 @@ public class Parser {
         String inputFirstWord = input.split(" ")[0];
         String inputWithoutCommand = input.substring(inputFirstWord.length()).trim();
 
-        for (Command command: commandList) {
+        for (Command command : commandList) {
             if (command.keyword.equals(inputFirstWord)) {
                 command.setup(inputWithoutCommand);
                 return command;
