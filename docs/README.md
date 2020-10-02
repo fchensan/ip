@@ -150,8 +150,8 @@ Good bye!
 **Action** | **Format, Examples**
 ------------ | -------------
 **todo**|`todo DESCRIPTION` <br>e.g. `todo CS1231 homework`
-**deadline**|`deadline DESCRIPTION /by yyyy-mm-dd` <br>e.g. `deadline UTC1001 essay /by 2020-10-09 20:00`
-**event**|`event DESCRIPTION /at yyyy-mm-dd`<br>e.g. `event beach party /at 2020-10-09 10:00`
+**deadline**|`deadline DESCRIPTION /by yyyy-mm-dd hh:mm` <br>e.g. `deadline UTC1001 essay /by 2020-10-09 20:00`
+**event**|`event DESCRIPTION /at yyyy-mm-dd hh:mm`<br>e.g. `event beach party /at 2020-10-09 10:00`
 **list**|`list`
 **done**|`done <index>` <br>e.g. `done 3`
 **delete**|`delete <index>` <br>e.g. `delete 2`
